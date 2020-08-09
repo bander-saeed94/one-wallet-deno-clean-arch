@@ -19,8 +19,22 @@ export default class CreateUserByPhoneNumberUseCase {
     firstName: string,
     lastName: string,
   ): Promise<User> {
-    //validate input
-    //validate user does not exist
+    const saudiNumber = /^9665[0-9]{8}$/;
+    if (!saudiNumber.test(phoneNumber)) {
+      throw new Error(`phoneNumber: ${phoneNumber} is not saudi number`);
+    }
+    const acceptedPasswordLength = 8;
+    if (password.length < acceptedPasswordLength) {
+      throw new Error(
+        `password length: ${password.length} is less than accepted ${acceptedPasswordLength}`,
+      );
+    }
+
+    let userExist = this.userRepo.findByPhoneNumber(phoneNumber);
+    if (typeof userExist !== "undefined") {
+      throw new Error(`user with phoneNumber: ${phoneNumber} already exist`);
+    }
+
     const user = new User(
       this.idGenerator.generate(),
       phoneNumber,
