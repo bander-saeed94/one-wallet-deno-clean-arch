@@ -1,4 +1,4 @@
-import EventEmitter from "../../usecase/port/event-emitter.ts";
+import EventEmitter from "../../core/usecase/port/event-emitter.ts";
 
 //https://github.com/HowProgrammingWorks/EventEmitter/blob/master/JavaScript/1-simple.js
 export default class EventEmitterImpl implements EventEmitter {

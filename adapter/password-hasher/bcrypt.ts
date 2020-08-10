@@ -1,5 +1,5 @@
 import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
-import PasswordHasher from "../../usecase/port/password-hasher.ts";
+import PasswordHasher from "../../core/usecase/port/password-hasher.ts";
 
 export default class BcryptHasher implements PasswordHasher {
   async hash(password: string): Promise<string> {

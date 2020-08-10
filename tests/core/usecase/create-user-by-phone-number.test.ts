@@ -4,10 +4,10 @@ import {
 } from "https://deno.land/std/testing/asserts.ts";
 
 import CreateUserByPhoneNumberUseCase from "../../../core/usecase/create-user-by-phone-number.ts";
-import InMemoryUserRepo from "../../../core/adapter/repo/in-memory/in-memory-user-repo.ts";
-import UUIDGenerator from "../../../core/adapter/id-generator/uuid-generator.ts";
-import BcryptHasher from "../../../core/adapter/password-hasher/bcrypt.ts";
-import EventEmitterImpl from "../../../core/adapter/event-emitter/class-event-emitter.ts";
+import InMemoryUserRepo from "../../../adapter/repo/in-memory/in-memory-user-repo.ts";
+import UUIDGenerator from "../../../adapter/id-generator/uuid-generator.ts";
+import BcryptHasher from "../../../adapter/password-hasher/bcrypt.ts";
+import EventEmitterImpl from "../../../adapter/event-emitter/class-event-emitter.ts";
 
 Deno.test("Create User", async () => {
   let userRepo = new InMemoryUserRepo();

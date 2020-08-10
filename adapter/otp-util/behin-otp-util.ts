@@ -1,6 +1,6 @@
-import OtpUtil from "../../usecase/port/otp-util.ts";
-import { ShaAlg } from "../../entity/sha-alg.ts";
-import Otp from "../../entity/otp.ts";
+import OtpUtil from "../../core/usecase/port/otp-util.ts";
+import { ShaAlg } from "../../core/entity/sha-alg.ts";
+import Otp from "../../core/entity/otp.ts";
 import Behin from "https://deno.land/x/behin/mod.ts";
 
 export default class BehinOtp implements OtpUtil {
