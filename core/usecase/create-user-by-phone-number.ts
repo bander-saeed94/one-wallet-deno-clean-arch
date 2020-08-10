@@ -2,14 +2,15 @@ import User from "../entity/user.ts";
 import UserRepo from "./port/user-repo.ts";
 import IdGenerator from "./port/id-generator.ts";
 import PasswordHasher from "./port/password-hasher.ts";
-// import SendOtpToPhoneNumberUseCase from "./send-otp-to-phone-number.ts";
+import SendOtpToPhoneNumberUseCase from "./send-otp-to-phone-number.ts";
+import EventEmitter from "./port/event-emitter.ts";
 
 export default class CreateUserByPhoneNumberUseCase {
   constructor(
     private userRepo: UserRepo,
     private idGenerator: IdGenerator,
     private passwordHasher: PasswordHasher,
-    // private sendOtpToPhoneNumberUseCase: SendOtpToPhoneNumberUseCase,
+    private eventEmitter: EventEmitter,
   ) {
   }
 
@@ -21,7 +22,9 @@ export default class CreateUserByPhoneNumberUseCase {
   ): Promise<User> {
     const saudiNumber = /^9665[0-9]{8}$/;
     if (!saudiNumber.test(phoneNumber)) {
-      throw new Error(`phoneNumber: ${phoneNumber} is not saudi number`);
+      throw new Error(
+        `phoneNumber: ${phoneNumber} is not a valid saudi number`,
+      );
     }
     const acceptedPasswordLength = 8;
     if (password.length < acceptedPasswordLength) {
@@ -44,10 +47,8 @@ export default class CreateUserByPhoneNumberUseCase {
       false,
     );
     this.userRepo.create(user);
-    //send otp
-    // this.sendOtpToPhoneNumberUseCase.sendOtp(phoneNumber);
     //emit event user has been created
-
+    this.eventEmitter.emit("user_has_been_created_with_phone_number", phoneNumber);
     return user;
   }
 }

@@ -14,6 +14,7 @@ import InMemoryUserRepo from "../../../core/adapter/repo/in-memory/in-memory-use
 import UUIDGenerator from "../../../core/adapter/id-generator/uuid-generator.ts";
 import BcryptHasher from "../../../core/adapter/password-hasher/bcrypt.ts";
 import CreateUserByPhoneNumberUseCase from "../../../core/usecase/create-user-by-phone-number.ts";
+import EventEmitterImpl from "../../../core/adapter/event-emitter/class-event-emitter.ts";
 
 Deno.test("Send Otp to none existing User", async () => {
   let behin = new BehinOtp();
@@ -40,10 +41,12 @@ Deno.test("Send Otp to existing User", async () => {
   let userRepo = new InMemoryUserRepo();
   let uuidGenerator = new UUIDGenerator();
   let bcryptHasher = new BcryptHasher();
+  let eventEmitter = new EventEmitterImpl();
   let createUserByPhoneNumberUseCase = new CreateUserByPhoneNumberUseCase(
     userRepo,
     uuidGenerator,
     bcryptHasher,
+    eventEmitter,
   );
   let user = await createUserByPhoneNumberUseCase.createUser(
     "966501766627",

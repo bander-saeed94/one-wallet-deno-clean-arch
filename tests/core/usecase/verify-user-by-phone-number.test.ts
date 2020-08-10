@@ -15,16 +15,19 @@ import UUIDGenerator from "../../../core/adapter/id-generator/uuid-generator.ts"
 import BcryptHasher from "../../../core/adapter/password-hasher/bcrypt.ts";
 import CreateUserByPhoneNumberUseCase from "../../../core/usecase/create-user-by-phone-number.ts";
 import VerifyUserByPhoneNumberUseCase from "../../../core/usecase/verify-user-by-phone-number.ts";
+import EventEmitterImpl from "../../../core/adapter/event-emitter/class-event-emitter.ts";
 
 Deno.test("Verify user", async () => {
   //given user and otp sent
   let userRepo = new InMemoryUserRepo();
   let uuidGenerator = new UUIDGenerator();
   let bcryptHasher = new BcryptHasher();
+  let eventEmitter = new EventEmitterImpl();
   let createUserByPhoneNumberUseCase = new CreateUserByPhoneNumberUseCase(
     userRepo,
     uuidGenerator,
     bcryptHasher,
+    eventEmitter,
   );
   let user = await createUserByPhoneNumberUseCase.createUser(
     "966501766627",
