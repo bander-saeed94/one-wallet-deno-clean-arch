@@ -15,21 +15,12 @@ import UUIDGenerator from "../../../adapter/id-generator/uuid-generator.ts";
 import BcryptHasher from "../../../adapter/password-hasher/bcrypt.ts";
 import CreateUserByPhoneNumberUseCase from "../../../core/usecase/create-user-by-phone-number.ts";
 import EventEmitterImpl from "../../../adapter/event-emitter/class-event-emitter.ts";
+import TestConfig from "../../../config/test-config.ts";
 
 Deno.test("Send Otp to none existing User", async () => {
-  let behin = new BehinOtp();
-  let fakeSmsSender = new FakeSmsSender();
-  let otpRepo = new InMemoryOtpRepo();
-  let otpConfig = new OtpConfigImpl(5, ShaAlg.sha1, 4);
-  let userRepo = new InMemoryUserRepo();
+  let testConfig = new TestConfig();
+  let sendOtpToPhoneNumberUseCase = testConfig.sendOtpToPhoneNumberUseCase();
 
-  let sendOtpToPhoneNumberUseCase = new SendOtpToPhoneNumberUseCase(
-    behin,
-    fakeSmsSender,
-    otpRepo,
-    otpConfig,
-    userRepo,
-  );
   try {
     let token: string = sendOtpToPhoneNumberUseCase.sendOtp("966501234567");
   } catch (e) {
@@ -38,34 +29,17 @@ Deno.test("Send Otp to none existing User", async () => {
 });
 
 Deno.test("Send Otp to existing User", async () => {
-  let userRepo = new InMemoryUserRepo();
-  let uuidGenerator = new UUIDGenerator();
-  let bcryptHasher = new BcryptHasher();
-  let eventEmitter = new EventEmitterImpl();
-  let createUserByPhoneNumberUseCase = new CreateUserByPhoneNumberUseCase(
-    userRepo,
-    uuidGenerator,
-    bcryptHasher,
-    eventEmitter,
-  );
+  let testConfig = new TestConfig();
+  let createUserByPhoneNumberUseCase = testConfig
+    .createUserByPhoneNumberUseCase();
+
   let user = await createUserByPhoneNumberUseCase.createUser(
     "966501766627",
     "Aa123456",
     "Bander",
     "Alshammari",
   );
-  let behin = new BehinOtp();
-  let fakeSmsSender = new FakeSmsSender();
-  let otpRepo = new InMemoryOtpRepo();
-  let otpConfig = new OtpConfigImpl(5, ShaAlg.sha1, 4);
-
-  let sendOtpToPhoneNumberUseCase = new SendOtpToPhoneNumberUseCase(
-    behin,
-    fakeSmsSender,
-    otpRepo,
-    otpConfig,
-    userRepo,
-  );
+  let sendOtpToPhoneNumberUseCase = testConfig.sendOtpToPhoneNumberUseCase();
   let token: string = sendOtpToPhoneNumberUseCase.sendOtp("966501766627");
   assertEquals(token.length, 4);
   assertMatch(token, /^[0-9]{4}$/);

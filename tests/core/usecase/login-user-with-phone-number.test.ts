@@ -3,25 +3,13 @@ import {
   assertNotEquals,
 } from "https://deno.land/std/testing/asserts.ts";
 
-import CreateUserByPhoneNumberUseCase from "../../../core/usecase/create-user-by-phone-number.ts";
-import InMemoryUserRepo from "../../../adapter/repo/in-memory/in-memory-user-repo.ts";
-import UUIDGenerator from "../../../adapter/id-generator/uuid-generator.ts";
-import BcryptHasher from "../../../adapter/password-hasher/bcrypt.ts";
-import LoginUserWithPhoneNumberUseCase from "../../../core/usecase/login-user-with-phone-number.ts";
-import EventEmitterImpl from "../../../adapter/event-emitter/class-event-emitter.ts";
+import TestConfig from "../../../config/test-config.ts";
 
 Deno.test("Login User", async () => {
   //given
-  let userRepo = new InMemoryUserRepo();
-  let uuidGenerator = new UUIDGenerator();
-  let bcryptHasher = new BcryptHasher();
-  let eventEmitter = new EventEmitterImpl();
-  let createUserByPhoneNumberUseCase = new CreateUserByPhoneNumberUseCase(
-    userRepo,
-    uuidGenerator,
-    bcryptHasher,
-    eventEmitter,
-  );
+  let testConfig = new TestConfig();
+  let createUserByPhoneNumberUseCase = testConfig
+    .createUserByPhoneNumberUseCase();
   let createdUser = await createUserByPhoneNumberUseCase.createUser(
     "966501766627",
     "Aa123456",
@@ -29,10 +17,8 @@ Deno.test("Login User", async () => {
     "Alshammari",
   );
   //when
-  const loginUserWithPhoneNumberUseCase = new LoginUserWithPhoneNumberUseCase(
-    bcryptHasher,
-    userRepo,
-  );
+  const loginUserWithPhoneNumberUseCase = testConfig
+    .loginUserWithPhoneNumberUseCase();
   let loggedInUser = await loginUserWithPhoneNumberUseCase.login(
     "966501766627",
     "Aa123456",

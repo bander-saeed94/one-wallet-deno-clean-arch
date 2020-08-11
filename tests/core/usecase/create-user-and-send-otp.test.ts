@@ -3,43 +3,15 @@ import {
   assertNotEquals,
 } from "https://deno.land/std/testing/asserts.ts";
 
-import CreateUserByPhoneNumberUseCase from "../../../core/usecase/create-user-by-phone-number.ts";
-import InMemoryUserRepo from "../../../adapter/repo/in-memory/in-memory-user-repo.ts";
-import UUIDGenerator from "../../../adapter/id-generator/uuid-generator.ts";
-import BcryptHasher from "../../../adapter/password-hasher/bcrypt.ts";
-import EventEmitterImpl from "../../../adapter/event-emitter/class-event-emitter.ts";
-import BehinOtp from "../../../adapter/otp-util/behin-otp-util.ts";
-import FakeSmsSender from "../../../adapter/sms-sender/fake-sms-sender.ts";
-import InMemoryOtpRepo from "../../../adapter/repo/in-memory/in-memory-otp-repo.ts";
-import OtpConfigImpl from "../../../adapter/otp-config/default-otp-config.ts";
-import { ShaAlg } from "../../../core/entity/sha-alg.ts";
-import SendOtpToPhoneNumberUseCase from "../../../core/usecase/send-otp-to-phone-number.ts";
-import EventListenerOnUserCreated from "../../../core/events-listener/event-listener-on-user-created.ts";
+import TestConfig from "../../../config/test-config.ts";
 
 Deno.test("Create User, Emit event, send otp", async () => {
-  let userRepo = new InMemoryUserRepo();
-  let uuidGenerator = new UUIDGenerator();
-  let bcryptHasher = new BcryptHasher();
-  let eventEmitter = new EventEmitterImpl();
-  let createUserByPhoneNumberUseCase = new CreateUserByPhoneNumberUseCase(
-    userRepo,
-    uuidGenerator,
-    bcryptHasher,
-    eventEmitter,
-  );
-  let behin = new BehinOtp();
-  let fakeSmsSender = new FakeSmsSender();
-  let otpRepo = new InMemoryOtpRepo();
-  let otpConfig = new OtpConfigImpl(5, ShaAlg.sha1, 4);
-  let sendOtpToPhoneNumberUseCase = new SendOtpToPhoneNumberUseCase(
-    behin,
-    fakeSmsSender,
-    otpRepo,
-    otpConfig,
-    userRepo,
-  );
-  let eventListenerOnUserCreated = new EventListenerOnUserCreated(
-    eventEmitter,
+  let testConfig = new TestConfig();
+  let createUserByPhoneNumberUseCase = testConfig
+    .createUserByPhoneNumberUseCase();
+
+  let sendOtpToPhoneNumberUseCase = testConfig.sendOtpToPhoneNumberUseCase();
+  let eventListenerOnUserCreated = testConfig.eventListenerOnUserCreated(
     sendOtpToPhoneNumberUseCase,
   );
   let user = await createUserByPhoneNumberUseCase.createUser(
@@ -48,5 +20,6 @@ Deno.test("Create User, Emit event, send otp", async () => {
     "Bander",
     "Alshammari",
   );
-  
+
+  assertEquals(eventListenerOnUserCreated.getNumberOfEvents(), 1);
 });

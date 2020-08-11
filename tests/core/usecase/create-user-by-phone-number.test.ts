@@ -3,23 +3,12 @@ import {
   assertNotEquals,
 } from "https://deno.land/std/testing/asserts.ts";
 
-import CreateUserByPhoneNumberUseCase from "../../../core/usecase/create-user-by-phone-number.ts";
-import InMemoryUserRepo from "../../../adapter/repo/in-memory/in-memory-user-repo.ts";
-import UUIDGenerator from "../../../adapter/id-generator/uuid-generator.ts";
-import BcryptHasher from "../../../adapter/password-hasher/bcrypt.ts";
-import EventEmitterImpl from "../../../adapter/event-emitter/class-event-emitter.ts";
+import TestConfig from "../../../config/test-config.ts";
 
 Deno.test("Create User", async () => {
-  let userRepo = new InMemoryUserRepo();
-  let uuidGenerator = new UUIDGenerator();
-  let bcryptHasher = new BcryptHasher();
-  let eventEmitter = new EventEmitterImpl();
-  let createUserByPhoneNumberUseCase = new CreateUserByPhoneNumberUseCase(
-    userRepo,
-    uuidGenerator,
-    bcryptHasher,
-    eventEmitter,
-  );
+  let testConfig = new TestConfig();
+  let createUserByPhoneNumberUseCase = testConfig
+    .createUserByPhoneNumberUseCase();
   let user = await createUserByPhoneNumberUseCase.createUser(
     "966501766627",
     "Aa123456",
@@ -34,16 +23,9 @@ Deno.test("Create User", async () => {
 });
 
 Deno.test("Reject Create User When Already Exist", async () => {
-  let userRepo = new InMemoryUserRepo();
-  let uuidGenerator = new UUIDGenerator();
-  let bcryptHasher = new BcryptHasher();
-  let eventEmitter = new EventEmitterImpl();
-  let createUserByPhoneNumberUseCase = new CreateUserByPhoneNumberUseCase(
-    userRepo,
-    uuidGenerator,
-    bcryptHasher,
-    eventEmitter,
-  );
+  let testConfig = new TestConfig();
+  let createUserByPhoneNumberUseCase = testConfig
+    .createUserByPhoneNumberUseCase();
   let user = await createUserByPhoneNumberUseCase.createUser(
     "966501766627",
     "Aa123456",
@@ -67,17 +49,10 @@ Deno.test("Reject Create User When Already Exist", async () => {
 });
 
 Deno.test("Create User With Non Saudi Number", async () => {
-  let userRepo = new InMemoryUserRepo();
-  let uuidGenerator = new UUIDGenerator();
-  let bcryptHasher = new BcryptHasher();
-  let eventEmitter = new EventEmitterImpl();
+  let testConfig = new TestConfig();
+  let createUserByPhoneNumberUseCase = testConfig
+    .createUserByPhoneNumberUseCase();
 
-  let createUserByPhoneNumberUseCase = new CreateUserByPhoneNumberUseCase(
-    userRepo,
-    uuidGenerator,
-    bcryptHasher,
-    eventEmitter,
-  );
   try {
     let user = await createUserByPhoneNumberUseCase.createUser(
       "960501766627",
@@ -94,16 +69,9 @@ Deno.test("Create User With Non Saudi Number", async () => {
 });
 
 Deno.test("Create User With Invalid Phone Number", async () => {
-  let userRepo = new InMemoryUserRepo();
-  let uuidGenerator = new UUIDGenerator();
-  let bcryptHasher = new BcryptHasher();
-  let eventEmitter = new EventEmitterImpl();
-  let createUserByPhoneNumberUseCase = new CreateUserByPhoneNumberUseCase(
-    userRepo,
-    uuidGenerator,
-    bcryptHasher,
-    eventEmitter,
-  );
+  let testConfig = new TestConfig();
+  let createUserByPhoneNumberUseCase = testConfig
+    .createUserByPhoneNumberUseCase();
   try {
     let user = await createUserByPhoneNumberUseCase.createUser(
       "96050176662",
@@ -120,16 +88,9 @@ Deno.test("Create User With Invalid Phone Number", async () => {
 });
 
 Deno.test("Create User With less than 8 char password", async () => {
-  let userRepo = new InMemoryUserRepo();
-  let uuidGenerator = new UUIDGenerator();
-  let bcryptHasher = new BcryptHasher();
-  let eventEmitter = new EventEmitterImpl();
-  let createUserByPhoneNumberUseCase = new CreateUserByPhoneNumberUseCase(
-    userRepo,
-    uuidGenerator,
-    bcryptHasher,
-    eventEmitter,
-  );
+  let testConfig = new TestConfig();
+  let createUserByPhoneNumberUseCase = testConfig
+    .createUserByPhoneNumberUseCase();
   try {
     let user = await createUserByPhoneNumberUseCase.createUser(
       "966501766627",

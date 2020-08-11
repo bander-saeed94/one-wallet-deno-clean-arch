@@ -16,49 +16,34 @@ import BcryptHasher from "../../../adapter/password-hasher/bcrypt.ts";
 import CreateUserByPhoneNumberUseCase from "../../../core/usecase/create-user-by-phone-number.ts";
 import VerifyUserByPhoneNumberUseCase from "../../../core/usecase/verify-user-by-phone-number.ts";
 import EventEmitterImpl from "../../../adapter/event-emitter/class-event-emitter.ts";
+import TestConfig from "../../../config/test-config.ts";
 
 Deno.test("Verify user", async () => {
   //given user and otp sent
-  let userRepo = new InMemoryUserRepo();
-  let uuidGenerator = new UUIDGenerator();
-  let bcryptHasher = new BcryptHasher();
-  let eventEmitter = new EventEmitterImpl();
-  let createUserByPhoneNumberUseCase = new CreateUserByPhoneNumberUseCase(
-    userRepo,
-    uuidGenerator,
-    bcryptHasher,
-    eventEmitter,
-  );
+  let testConfig = new TestConfig();
+  let createUserByPhoneNumberUseCase = testConfig
+    .createUserByPhoneNumberUseCase();
   let user = await createUserByPhoneNumberUseCase.createUser(
     "966501766627",
     "Aa123456",
     "Bander",
     "Alshammari",
   );
-  let behinOtpUtil = new BehinOtp();
-  let fakeSmsSender = new FakeSmsSender();
-  let otpRepo = new InMemoryOtpRepo();
-  let otpConfig = new OtpConfigImpl(5, ShaAlg.sha1, 4);
+  let sendOtpToPhoneNumberUseCase = testConfig.sendOtpToPhoneNumberUseCase();
 
-  let sendOtpToPhoneNumberUseCase = new SendOtpToPhoneNumberUseCase(
-    behinOtpUtil,
-    fakeSmsSender,
-    otpRepo,
-    otpConfig,
-    userRepo,
-  );
   let token: string = sendOtpToPhoneNumberUseCase.sendOtp("966501766627");
 
   //when verifying otp
-  let userBeforeVerification = userRepo.findByPhoneNumber("966501766627");
-  assert(!userBeforeVerification?.verifiedByPhoneNumber);
-  let verifyUserByPhoneNumberUseCase = new VerifyUserByPhoneNumberUseCase(
-    behinOtpUtil,
-    otpRepo,
-    userRepo,
+  let userBeforeVerification = testConfig.userRepo.findByPhoneNumber(
+    "966501766627",
   );
+  assert(!userBeforeVerification?.verifiedByPhoneNumber);
+  let verifyUserByPhoneNumberUseCase = testConfig
+    .verifyUserByPhoneNumberUseCase();
   verifyUserByPhoneNumberUseCase.verify("966501766627", token);
   //then user is verified
-  let userAfterVerification = userRepo.findByPhoneNumber("966501766627");
+  let userAfterVerification = testConfig.userRepo.findByPhoneNumber(
+    "966501766627",
+  );
   assert(userAfterVerification?.verifiedByPhoneNumber);
 });
