@@ -8,6 +8,7 @@ export default class InMemoryOtpRepo implements OtpRepo {
     this.otps.push({ phoneNumber: phoneNumber, otp: otp });
   }
   findLastByPhoneNumber(phoneNumber: string): Otp | undefined {
-    return this.otps.reverse().find((otp) => otp.phoneNumber === phoneNumber)?.otp;
+    return this.otps.reverse().find((otp) => otp.phoneNumber === phoneNumber)
+      ?.otp;
   }
 }
