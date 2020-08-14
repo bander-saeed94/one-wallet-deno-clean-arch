@@ -1,25 +1,24 @@
-import RegisterUserByPhoneNumberUseCase from "./RegisterUserByPhoneNumberUseCase.ts";
-import RegisterUserByPhoneNumberInput from "./RegisterUserByPhoneNumberInput.ts";
+import {
+  RegisterUserByPhoneNumberInput,
+  RegisterUserByPhoneNumberInputPort,
+  RegisterUserByPhoneNumberOutputPort,
+} from "./mod.ts";
+
 import UserRepo from "../port/user-repo.ts";
 import IdGenerator from "../port/id-generator.ts";
 import PasswordHasher from "../port/password-hasher.ts";
 import EventEmitter from "../port/event-emitter.ts";
 import User from "../../entity/user.ts";
-import RegisterUserByPhoneNumberOutputPort from "./RegisterUserByPhoneNumberOutputPort.ts";
 
-export default class RegisterUserByPhoneNumberUseCaseImpl
-  implements RegisterUserByPhoneNumberUseCase {
-  private outputPort: RegisterUserByPhoneNumberOutputPort | undefined;
+export default class RegisterUserByPhoneNumberInteractor
+  implements RegisterUserByPhoneNumberInputPort {
   constructor(
     private userRepo: UserRepo,
     private idGenerator: IdGenerator,
     private passwordHasher: PasswordHasher,
     private eventEmitter: EventEmitter,
+    private outputPort: RegisterUserByPhoneNumberOutputPort,
   ) {
-  }
-
-  setOutputPort(outputPort: RegisterUserByPhoneNumberOutputPort): void {
-    this.outputPort = outputPort;
   }
 
   async execute(input: RegisterUserByPhoneNumberInput): Promise<void> {
@@ -49,14 +48,14 @@ export default class RegisterUserByPhoneNumberUseCaseImpl
     }
     const inputHasInvalidFields = invalidFields.length > 0;
     if (inputHasInvalidFields) {
-      this.outputPort?.invalidInputs(invalidFields);
+      this.outputPort.invalidInputs(invalidFields);
       return;
     }
 
     let existingUser = this.userRepo.findByPhoneNumber(input.phoneNumber);
     let userExist = existingUser instanceof User;
     if (userExist) {
-      this.outputPort?.userAlreadyExist(existingUser as User);
+      this.outputPort.userAlreadyExist(existingUser as User);
       return;
     }
 
@@ -74,7 +73,7 @@ export default class RegisterUserByPhoneNumberUseCaseImpl
       "user_has_been_created_with_phone_number",
       input.phoneNumber,
     );
-    this.outputPort?.Ok(user);
+    this.outputPort.Ok(user);
     return;
   }
 }

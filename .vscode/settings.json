@@ -4,6 +4,7 @@
         "Hasher",
         "iban",
         "usecase",
-        "Alshammari"
+        "Alshammari",
+        "Interactor"
     ]
 }

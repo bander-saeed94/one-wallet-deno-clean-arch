@@ -1,4 +1,4 @@
-import RegisterUserByPhoneNumberOutputPort from "../../../../core/usecases/RegisterUserByPhoneNumber/RegisterUserByPhoneNumberOutputPort.ts";
+import RegisterUserByPhoneNumberOutputPort from "../../../../core/usecases/RegisterUserByPhoneNumber/UseCaseOutputPort.ts";
 import InvalidField from "../../../../core/usecases/InvalidField.ts";
 import User from "../../../../core/entity/user.ts";
 

@@ -4,7 +4,7 @@ import {
 } from "https://deno.land/std/testing/asserts.ts";
 
 import TestConfig from "../../../../../config/test-config.ts";
-import RegisterUserByPhoneNumberInput from "../../../../../core/usecases/RegisterUserByPhoneNumber/RegisterUserByPhoneNumberInput.ts";
+import { RegisterUserByPhoneNumberInput } from "../../../../../core/usecases/RegisterUserByPhoneNumber/mod.ts";
 import RegisterByPhoneNumberPresenterFake from "../../presenters/RegisterByPhoneNumberPresenterFake.ts";
 
 Deno.test("Create User", async () => {
@@ -17,8 +17,7 @@ Deno.test("Create User", async () => {
     lastName: "Alshammari",
   };
   let registerUserByPhoneNumberUseCase = testConfig
-    .registerUserByPhoneNumberUseCase();
-  registerUserByPhoneNumberUseCase.setOutputPort(presenter);
+    .registerUserByPhoneNumberUseCase(presenter);
   await registerUserByPhoneNumberUseCase.execute(
     input,
   );
@@ -42,13 +41,14 @@ Deno.test("Reject Create User When Already Exist", async () => {
     lastName: "Alshammari",
   };
   let registerUserByPhoneNumberUseCase = testConfig
-    .registerUserByPhoneNumberUseCase();
+    .registerUserByPhoneNumberUseCase(new RegisterByPhoneNumberPresenterFake());
   await registerUserByPhoneNumberUseCase.execute(
     input,
   );
   //when
   let presenter = new RegisterByPhoneNumberPresenterFake();
-  registerUserByPhoneNumberUseCase.setOutputPort(presenter);
+  registerUserByPhoneNumberUseCase = testConfig
+    .registerUserByPhoneNumberUseCase(presenter);
   await registerUserByPhoneNumberUseCase.execute(
     input,
   );
@@ -74,8 +74,7 @@ Deno.test("Create User With Non Saudi Number", async () => {
     lastName: "Alshammari",
   };
   let registerUserByPhoneNumberUseCase = testConfig
-    .registerUserByPhoneNumberUseCase();
-  registerUserByPhoneNumberUseCase.setOutputPort(presenter);
+    .registerUserByPhoneNumberUseCase(presenter);
   //when
   await registerUserByPhoneNumberUseCase.execute(
     input,
@@ -98,8 +97,7 @@ Deno.test("Create User With Invalid Phone Number", async () => {
     lastName: "Alshammari",
   };
   let registerUserByPhoneNumberUseCase = testConfig
-    .registerUserByPhoneNumberUseCase();
-  registerUserByPhoneNumberUseCase.setOutputPort(presenter);
+    .registerUserByPhoneNumberUseCase(presenter);
   //when
   await registerUserByPhoneNumberUseCase.execute(
     input,
@@ -122,8 +120,7 @@ Deno.test("Create User With less than 8 char password", async () => {
     lastName: "Alshammari",
   };
   let registerUserByPhoneNumberUseCase = testConfig
-    .registerUserByPhoneNumberUseCase();
-  registerUserByPhoneNumberUseCase.setOutputPort(presenter);
+    .registerUserByPhoneNumberUseCase(presenter);
   //when
   await registerUserByPhoneNumberUseCase.execute(
     input,
@@ -146,8 +143,7 @@ Deno.test("Invalid phone number and password", async () => {
     lastName: "Alshammari",
   };
   let registerUserByPhoneNumberUseCase = testConfig
-    .registerUserByPhoneNumberUseCase();
-  registerUserByPhoneNumberUseCase.setOutputPort(presenter);
+    .registerUserByPhoneNumberUseCase(presenter);
   //when
   await registerUserByPhoneNumberUseCase.execute(
     input,
