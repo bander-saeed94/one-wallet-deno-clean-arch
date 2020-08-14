@@ -12,6 +12,8 @@ import OtpConfigImpl from "../adapter/otp-config/default-otp-config.ts";
 import { ShaAlg } from "../core/entity/sha-alg.ts";
 import LoginUserWithPhoneNumberUseCase from "../core/usecases/login-user-with-phone-number.ts";
 import VerifyUserByPhoneNumberUseCase from "../core/usecases/verify-user-by-phone-number.ts";
+import RegisterUserByPhoneNumberUseCaseImpl from "../core/usecases/RegisterUserByPhoneNumber/RegisterUserByPhoneNumberUseCaseImpl.ts";
+import RegisterUserByPhoneNumberUseCase from "../core/usecases/RegisterUserByPhoneNumber/RegisterUserByPhoneNumberUseCase.ts";
 
 export default class TestConfig {
   readonly userRepo = new InMemoryUserRepo();
@@ -23,6 +25,15 @@ export default class TestConfig {
   private readonly fakeSmsSender = new FakeSmsSender();
   private readonly otpRepo = new InMemoryOtpRepo();
   private readonly otpConfig = new OtpConfigImpl(5, ShaAlg.sha1, 4);
+
+  public registerUserByPhoneNumberUseCase(): RegisterUserByPhoneNumberUseCase {
+    return new RegisterUserByPhoneNumberUseCaseImpl(
+      this.userRepo,
+      this.uuidGenerator,
+      this.bcryptHasher,
+      this.eventEmitter,
+    );
+  }
 
   public createUserByPhoneNumberUseCase(): CreateUserByPhoneNumberUseCase {
     return new CreateUserByPhoneNumberUseCase(

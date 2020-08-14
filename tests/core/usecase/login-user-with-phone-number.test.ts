@@ -75,6 +75,9 @@ Deno.test("Login with non existing user", async () => {
       "Aa123456",
     );
   } catch (e) {
-    assertEquals(e.message, "user with provided phoneNumber: 966501766638 not found");
+    assertEquals(
+      e.message,
+      "user with provided phoneNumber: 966501766638 not found",
+    );
   }
 });
