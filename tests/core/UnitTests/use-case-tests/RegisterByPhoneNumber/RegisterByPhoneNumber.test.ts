@@ -4,7 +4,7 @@ import {
 } from "https://deno.land/std/testing/asserts.ts";
 
 import TestConfig from "../../../../../config/test-config.ts";
-import { RegisterUserByPhoneNumberInput } from "../../../../../core/usecases/RegisterUserByPhoneNumber/mod.ts";
+import { RegisterUserByPhoneNumberInput } from "../../../../../UseCases/RegisterUserByPhoneNumber/mod.ts";
 import RegisterByPhoneNumberPresenterFake from "../../presenters/RegisterByPhoneNumberPresenterFake.ts";
 
 Deno.test("Create User", async () => {

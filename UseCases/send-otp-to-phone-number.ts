@@ -1,6 +1,6 @@
 import OtpUtil from "./port/otp-util.ts";
 import SmsSender from "./port/sms-sender.ts";
-import Otp from "../entity/otp.ts";
+import Otp from "../Entities/otp.ts";
 import OtpRepo from "./port/otp-repo.ts";
 import OtpConfig from "./port/otp-config.ts";
 import UserRepo from "./port/user-repo.ts";

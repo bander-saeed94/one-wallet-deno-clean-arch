@@ -1,4 +1,4 @@
-import { ShaAlg } from "../../entity/sha-alg.ts";
+import { ShaAlg } from "../../Entities/sha-alg.ts";
 
 export default interface OtpConfig {
   timeInterval: number;

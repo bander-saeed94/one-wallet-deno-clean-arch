@@ -1,5 +1,5 @@
-import EventEmitter from "../usecases/port/event-emitter.ts";
-import SendOtpToPhoneNumberUseCase from "../usecases/send-otp-to-phone-number.ts";
+import EventEmitter from "../../UseCases/port/event-emitter.ts";
+import SendOtpToPhoneNumberUseCase from "../../UseCases/send-otp-to-phone-number.ts";
 
 export default class EventListenerOnUserCreated {
   private numberOfEvents: number = 0;

@@ -1,4 +1,4 @@
-import Otp from "../../entity/otp.ts";
+import Otp from "../../Entities/otp.ts";
 
 export default interface OtpRepo {
   create(phoneNumber: string, otp: Otp): void;

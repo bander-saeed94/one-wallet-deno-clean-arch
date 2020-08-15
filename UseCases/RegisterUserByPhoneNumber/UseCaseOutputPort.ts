@@ -1,5 +1,5 @@
 import InvalidField from "../InvalidField.ts";
-import User from "../../entity/user.ts";
+import User from "../../Entities/user.ts";
 export default interface RegisterUserByPhoneNumberOutputPort {
   invalidInputs(fields: InvalidField[]): void;
 

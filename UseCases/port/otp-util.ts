@@ -1,5 +1,5 @@
-import { ShaAlg } from "../../entity/sha-alg.ts";
-import Otp from "../../entity/otp.ts";
+import { ShaAlg } from "../../Entities/sha-alg.ts";
+import Otp from "../../Entities/otp.ts";
 
 export default interface OtpUtil {
   generate(timeInterval: number, alg: ShaAlg, digits: number): Otp;

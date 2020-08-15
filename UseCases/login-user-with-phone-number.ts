@@ -1,6 +1,6 @@
 import UserRepo from "./port/user-repo.ts";
 import PasswordHasher from "./port/password-hasher.ts";
-import User from "../entity/user.ts";
+import User from "../Entities/user.ts";
 
 export default class LoginUserWithPhoneNumberUseCase {
   constructor(

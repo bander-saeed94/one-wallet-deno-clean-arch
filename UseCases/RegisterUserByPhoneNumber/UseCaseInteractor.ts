@@ -8,7 +8,7 @@ import UserRepo from "../port/user-repo.ts";
 import IdGenerator from "../port/id-generator.ts";
 import PasswordHasher from "../port/password-hasher.ts";
 import EventEmitter from "../port/event-emitter.ts";
-import User from "../../entity/user.ts";
+import User from "../../Entities/user.ts";
 
 export default class RegisterUserByPhoneNumberInteractor
   implements RegisterUserByPhoneNumberInputPort {
