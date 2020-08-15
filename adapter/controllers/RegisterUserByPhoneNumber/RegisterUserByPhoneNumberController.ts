@@ -7,10 +7,10 @@ export default class RegisterUserByPhoneNumberController {
       RegisterUserByPhoneNumberInputPort,
   ) {
   }
-  public registerUser(
+  public async registerUser(
     registerUserByPhoneNumberRequest: RegisterUserByPhoneNumberRequest,
-  ) {
-    this.registerUserByPhoneNumberInputPort.execute(
+  ): Promise<void> {
+    await this.registerUserByPhoneNumberInputPort.execute(
       RegisterUserByPhoneNumberRequest.from(registerUserByPhoneNumberRequest),
     );
   }

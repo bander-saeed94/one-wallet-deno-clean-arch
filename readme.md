@@ -26,6 +26,9 @@ One Wallet. App to manage and track wallet where multiple persons are contributi
 Install deno:  
 [deno](https://deno.land/)
 
+Upgrade: 
+```deno upgrade --version 1.3.0```
+
 ## Testing
 
 ```deno test --unstable --allow-net```
@@ -33,7 +36,7 @@ Install deno:
 
 ### Executing program
 
-Not yet.
+deno run --allow-net --unstable web/main.ts 
 
 ## Authors
 
