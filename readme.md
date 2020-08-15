@@ -44,7 +44,7 @@ Upgrade:
 
 ### Executing program
 
-```deno run --allow-net --unstable Frameworks/Web/main.ts```
+```deno run --allow-net --unstable src/Frameworks/Web/main.ts```
 
 ## Authors
 

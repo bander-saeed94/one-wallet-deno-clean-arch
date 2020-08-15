@@ -1,6 +1,6 @@
-import RegisterUserByPhoneNumberOutputPort from "../../../../UseCases/RegisterUserByPhoneNumber/UseCaseOutputPort.ts";
-import InvalidField from "../../../../UseCases/InvalidField.ts";
-import User from "../../../../Entities/user.ts";
+import RegisterUserByPhoneNumberOutputPort from "../../../../src/UseCases/RegisterUserByPhoneNumber/UseCaseOutputPort.ts";
+import InvalidField from "../../../../src/UseCases/InvalidField.ts";
+import User from "../../../../src/Entities/user.ts";
 
 export default class RegisterByPhoneNumberPresenterFake
   implements RegisterUserByPhoneNumberOutputPort {

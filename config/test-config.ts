@@ -1,23 +1,23 @@
-import CreateUserByPhoneNumberUseCase from "../UseCases/create-user-by-phone-number.ts";
-import InMemoryUserRepo from "../Adapters/gateways/repo/in-memory/in-memory-user-repo.ts";
-import UUIDGenerator from "../Adapters/lib/id-generator/uuid-generator.ts";
-import BcryptHasher from "../Adapters/lib/password-hasher/bcrypt.ts";
-import EventEmitterImpl from "../Adapters/event-emitter/class-event-emitter.ts";
-import SendOtpToPhoneNumberUseCase from "../UseCases/send-otp-to-phone-number.ts";
-import ListenerOnUserCreatedEvent from "../UseCases/EventsReaction/ListenerOnUserCreatedEvent.ts";
-import BehinOtp from "../Adapters/lib/otp-util/behin-otp-util.ts";
-import FakeSmsSender from "../Adapters/gateways/sms-sender/fake-sms-sender.ts";
-import InMemoryOtpRepo from "../Adapters/gateways/repo/in-memory/in-memory-otp-repo.ts";
-import OtpConfigImpl from "../Adapters/lib/otp-config/default-otp-config.ts";
-import { ShaAlg } from "../Entities/sha-alg.ts";
-import LoginUserWithPhoneNumberUseCase from "../UseCases/login-user-with-phone-number.ts";
-import VerifyUserByPhoneNumberUseCase from "../UseCases/verify-user-by-phone-number.ts";
+import CreateUserByPhoneNumberUseCase from "../src/UseCases/create-user-by-phone-number.ts";
+import InMemoryUserRepo from "../src/Adapters/gateways/repo/in-memory/in-memory-user-repo.ts";
+import UUIDGenerator from "../src/Adapters/lib/id-generator/uuid-generator.ts";
+import BcryptHasher from "../src/Adapters/lib/password-hasher/bcrypt.ts";
+import EventEmitterImpl from "../src/Adapters/event-emitter/class-event-emitter.ts";
+import SendOtpToPhoneNumberUseCase from "../src/UseCases/send-otp-to-phone-number.ts";
+import ListenerOnUserCreatedEvent from "../src/UseCases/EventsReaction/ListenerOnUserCreatedEvent.ts";
+import BehinOtp from "../src/Adapters/lib/otp-util/behin-otp-util.ts";
+import FakeSmsSender from "../src/Adapters/gateways/sms-sender/fake-sms-sender.ts";
+import InMemoryOtpRepo from "../src/Adapters/gateways/repo/in-memory/in-memory-otp-repo.ts";
+import OtpConfigImpl from "../src/Adapters/lib/otp-config/default-otp-config.ts";
+import { ShaAlg } from "../src/Entities/sha-alg.ts";
+import LoginUserWithPhoneNumberUseCase from "../src/UseCases/login-user-with-phone-number.ts";
+import VerifyUserByPhoneNumberUseCase from "../src/UseCases/verify-user-by-phone-number.ts";
 
 import {
   RegisterUserByPhoneNumberInputPort,
   RegisterUserByPhoneNumberInteractor,
   RegisterUserByPhoneNumberOutputPort,
-} from "../UseCases/RegisterUserByPhoneNumber/mod.ts";
+} from "../src/UseCases/RegisterUserByPhoneNumber/mod.ts";
 
 export default class TestConfig {
   readonly userRepo = new InMemoryUserRepo();
