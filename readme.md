@@ -3,7 +3,7 @@
 One Wallet. App to manage and track wallet where multiple persons are contributing.
 
 ## Use Cases  
-- [x] Register User
+- [x] Register User, Refactor
 - [x] Send Otp to User
 - [x] Verify User by Otp
 - [x] Login User
@@ -36,7 +36,7 @@ Upgrade:
 
 ### Executing program
 
-deno run --allow-net --unstable web/main.ts 
+```deno run --allow-net --unstable web/main.ts```
 
 ## Authors
 
