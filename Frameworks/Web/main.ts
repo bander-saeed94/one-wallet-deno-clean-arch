@@ -1,7 +1,7 @@
 import { Application, Context } from "https://deno.land/x/abc@v1.0.2/mod.ts";
-import RestConfig from "../config/rest-config.ts";
-import RegisterUserByPhoneNumberController from "../adapter/controllers/RegisterUserByPhoneNumber/RegisterUserByPhoneNumberController.ts";
-import RegisterUserByPhoneNumberRequest from "../adapter/controllers/RegisterUserByPhoneNumber/RegisterUserByPhoneNumberRequest.ts";
+import RestConfig from "../../config/rest-config.ts";
+import RegisterUserByPhoneNumberController from "../../Adapters/controllers/RegisterUserByPhoneNumber/RegisterUserByPhoneNumberController.ts";
+import RegisterUserByPhoneNumberRequest from "../../Adapters/controllers/RegisterUserByPhoneNumber/RegisterUserByPhoneNumberRequest.ts";
 
 const app = new Application();
 

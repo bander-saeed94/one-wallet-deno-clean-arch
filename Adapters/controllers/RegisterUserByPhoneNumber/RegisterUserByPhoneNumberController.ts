@@ -1,4 +1,4 @@
-import { RegisterUserByPhoneNumberInputPort } from "../../../core/usecases/RegisterUserByPhoneNumber/mod.ts";
+import { RegisterUserByPhoneNumberInputPort } from "../../../UseCases/RegisterUserByPhoneNumber/mod.ts";
 import RegisterUserByPhoneNumberRequest from "./RegisterUserByPhoneNumberRequest.ts";
 
 export default class RegisterUserByPhoneNumberController {

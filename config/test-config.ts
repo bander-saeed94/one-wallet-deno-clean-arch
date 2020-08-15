@@ -1,14 +1,14 @@
 import CreateUserByPhoneNumberUseCase from "../UseCases/create-user-by-phone-number.ts";
-import InMemoryUserRepo from "../adapter/gateways/repo/in-memory/in-memory-user-repo.ts";
-import UUIDGenerator from "../adapter/lib/id-generator/uuid-generator.ts";
-import BcryptHasher from "../adapter/lib/password-hasher/bcrypt.ts";
-import EventEmitterImpl from "../adapter/event-emitter/class-event-emitter.ts";
+import InMemoryUserRepo from "../Adapters/gateways/repo/in-memory/in-memory-user-repo.ts";
+import UUIDGenerator from "../Adapters/lib/id-generator/uuid-generator.ts";
+import BcryptHasher from "../Adapters/lib/password-hasher/bcrypt.ts";
+import EventEmitterImpl from "../Adapters/event-emitter/class-event-emitter.ts";
 import SendOtpToPhoneNumberUseCase from "../UseCases/send-otp-to-phone-number.ts";
-import EventListenerOnUserCreated from "../core/events-listener/event-listener-on-user-created.ts";
-import BehinOtp from "../adapter/lib/otp-util/behin-otp-util.ts";
-import FakeSmsSender from "../adapter/gateways/sms-sender/fake-sms-sender.ts";
-import InMemoryOtpRepo from "../adapter/gateways/repo/in-memory/in-memory-otp-repo.ts";
-import OtpConfigImpl from "../adapter/lib/otp-config/default-otp-config.ts";
+import ListenerOnUserCreatedEvent from "../UseCases/EventsReaction/ListenerOnUserCreatedEvent.ts";
+import BehinOtp from "../Adapters/lib/otp-util/behin-otp-util.ts";
+import FakeSmsSender from "../Adapters/gateways/sms-sender/fake-sms-sender.ts";
+import InMemoryOtpRepo from "../Adapters/gateways/repo/in-memory/in-memory-otp-repo.ts";
+import OtpConfigImpl from "../Adapters/lib/otp-config/default-otp-config.ts";
 import { ShaAlg } from "../Entities/sha-alg.ts";
 import LoginUserWithPhoneNumberUseCase from "../UseCases/login-user-with-phone-number.ts";
 import VerifyUserByPhoneNumberUseCase from "../UseCases/verify-user-by-phone-number.ts";
@@ -62,8 +62,8 @@ export default class TestConfig {
 
   public eventListenerOnUserCreated(
     sendOtpToPhoneNumberUseCase: SendOtpToPhoneNumberUseCase,
-  ): EventListenerOnUserCreated {
-    return new EventListenerOnUserCreated(
+  ): ListenerOnUserCreatedEvent {
+    return new ListenerOnUserCreatedEvent(
       this.eventEmitter,
       sendOtpToPhoneNumberUseCase,
     );

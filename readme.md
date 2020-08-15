@@ -2,6 +2,14 @@
 
 One Wallet. App to manage and track wallet where multiple persons are contributing.
 
+## Layers
+
+- Entities
+- UseCases
+- EventsReaction 
+- Adapter
+
+
 ## Use Cases  
 - [x] Register User, Refactor
 - [x] Send Otp to User
@@ -36,7 +44,7 @@ Upgrade:
 
 ### Executing program
 
-```deno run --allow-net --unstable web/main.ts```
+```deno run --allow-net --unstable Frameworks/Web/main.ts```
 
 ## Authors
 

@@ -1,4 +1,4 @@
-import { RegisterUserByPhoneNumberInput } from "../../../core/usecases/RegisterUserByPhoneNumber/mod.ts";
+import { RegisterUserByPhoneNumberInput } from "../../../UseCases/RegisterUserByPhoneNumber/mod.ts";
 
 export default class RegisterUserByPhoneNumberRequest {
   constructor(
