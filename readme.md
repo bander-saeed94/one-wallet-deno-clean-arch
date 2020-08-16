@@ -44,7 +44,11 @@ Upgrade:
 
 ### Executing program
 
-```deno run --allow-net --unstable src/Frameworks/Web/main.ts```
+run Oak server:
+```deno run --allow-net --unstable src/Frameworks/Web/oak/main.ts```
+
+run Abc server:
+```deno run --allow-net --unstable src/Frameworks/Web/abc/main.ts```
 
 ## Authors
 
