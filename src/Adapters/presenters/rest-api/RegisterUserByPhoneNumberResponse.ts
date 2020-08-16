@@ -1,4 +1,4 @@
-import User from "../../../core/entity/user.ts";
+import User from "../../../Entities/user.ts";
 
 export default class RegisterUserByPhoneNumberResponse {
   constructor(
