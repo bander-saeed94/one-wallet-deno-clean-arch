@@ -16,14 +16,10 @@ export default class RegisterUserByPhoneNumberPresenter
   }
 
   invalidInputs(fields: InvalidField[]): void {
-    console.log(`InvalidField: ${fields.toString()}`);
-    fields.forEach((field) => {
-      console.log(field.field);
-      console.log(field.reason);
-    });
+    console.log(`InvalidField: ${JSON.stringify(fields)}`);
     this.restPresentation = {
       httpStatus: 400,
-      body: fields.toString(),
+      body: fields,
     };
   }
 
@@ -31,7 +27,7 @@ export default class RegisterUserByPhoneNumberPresenter
     console.log("user already exist");
     this.restPresentation = {
       httpStatus: 400,
-      body: existingUser,
+      body: RegisterUserByPhoneNumberResponse.from(existingUser),
     };
   }
 

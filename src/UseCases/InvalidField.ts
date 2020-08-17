@@ -1,5 +1,5 @@
 export default interface InvalidField {
-  field: string;
+  name: string;
   reason: string;
   value: any;
   defaultMessage: string;

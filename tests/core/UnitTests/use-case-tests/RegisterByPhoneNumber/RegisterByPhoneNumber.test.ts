@@ -80,7 +80,7 @@ Deno.test("Create User With Non Saudi Number", async () => {
     input,
   );
   //then
-  assertEquals(presenter.invalidFields[0].field, "phoneNumber");
+  assertEquals(presenter.invalidFields[0].name, "phoneNumber");
   assertEquals(presenter.invalidFields[0].reason, "invalidSaudiNumber");
   assertEquals(typeof presenter.existingUser, "undefined");
   assertEquals(typeof presenter.createdUser, "undefined");
@@ -103,7 +103,7 @@ Deno.test("Create User With Invalid Phone Number", async () => {
     input,
   );
   //then
-  assertEquals(presenter.invalidFields[0].field, "phoneNumber");
+  assertEquals(presenter.invalidFields[0].name, "phoneNumber");
   assertEquals(presenter.invalidFields[0].reason, "invalidSaudiNumber");
   assertEquals(typeof presenter.existingUser, "undefined");
   assertEquals(typeof presenter.createdUser, "undefined");
@@ -126,7 +126,7 @@ Deno.test("Create User With less than 8 char password", async () => {
     input,
   );
   //then
-  assertEquals(presenter.invalidFields[0].field, "password");
+  assertEquals(presenter.invalidFields[0].name, "password");
   assertEquals(presenter.invalidFields[0].reason, "shortPassword");
   assertEquals(typeof presenter.existingUser, "undefined");
   assertEquals(typeof presenter.createdUser, "undefined");
@@ -149,9 +149,9 @@ Deno.test("Invalid phone number and password", async () => {
     input,
   );
   //then
-  assertEquals(presenter.invalidFields[0].field, "phoneNumber");
+  assertEquals(presenter.invalidFields[0].name, "phoneNumber");
   assertEquals(presenter.invalidFields[0].reason, "invalidSaudiNumber");
-  assertEquals(presenter.invalidFields[1].field, "password");
+  assertEquals(presenter.invalidFields[1].name, "password");
   assertEquals(presenter.invalidFields[1].reason, "shortPassword");
   assertEquals(typeof presenter.existingUser, "undefined");
   assertEquals(typeof presenter.createdUser, "undefined");

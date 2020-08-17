@@ -28,7 +28,7 @@ export default class RegisterUserByPhoneNumberInteractor
     const invalidSaudiNumber = !saudiNumber.test(input.phoneNumber);
     if (invalidSaudiNumber) {
       invalidFields.push({
-        field: "phoneNumber",
+        name: "phoneNumber",
         value: input.phoneNumber,
         reason: "invalidSaudiNumber",
         defaultMessage:
@@ -39,7 +39,7 @@ export default class RegisterUserByPhoneNumberInteractor
     const shortPassword = input.password.length < minimumPasswordLength;
     if (shortPassword) {
       invalidFields.push({
-        field: "password",
+        name: "password",
         value: input.password,
         reason: "shortPassword",
         defaultMessage:
