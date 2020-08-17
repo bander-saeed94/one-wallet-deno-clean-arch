@@ -1,5 +1,5 @@
 import type { Group } from "https://deno.land/x/abc@v1.0.3/mod.ts";
-import { Context } from 'https://deno.land/x/abc@v1.0.3/mod.ts';
+import { Context } from "https://deno.land/x/abc@v1.0.3/mod.ts";
 import RegisterUserByPhoneNumberRequest from "../../../../Adapters/controllers/RegisterUserByPhoneNumber/RegisterUserByPhoneNumberRequest.ts";
 import RestConfig from "../../../../../config/rest-config.ts";
 import RegisterUserByPhoneNumberController from "../../../../Adapters/controllers/RegisterUserByPhoneNumber/RegisterUserByPhoneNumberController.ts";
@@ -25,7 +25,7 @@ export default class UserRoutes {
         registerUserByPhoneNumberRequest,
       );
       //presenter
-      c.json(presenter.present.body, presenter.present.httpStatus)
+      c.json(presenter.present.body, presenter.present.httpStatus);
     });
   }
 }

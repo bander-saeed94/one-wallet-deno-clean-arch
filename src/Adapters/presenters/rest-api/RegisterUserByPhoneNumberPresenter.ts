@@ -27,7 +27,7 @@ export default class RegisterUserByPhoneNumberPresenter
     console.log("user already exist");
     this.restPresentation = {
       httpStatus: 409,
-      body: '',
+      body: "",
     };
   }
 

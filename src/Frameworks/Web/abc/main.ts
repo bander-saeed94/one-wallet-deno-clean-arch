@@ -1,5 +1,5 @@
 import RestConfig from "../../../../config/rest-config.ts";
-import AbcApplication from './Application.ts';
+import AbcApplication from "./Application.ts";
 
 const restConfig = new RestConfig();
 
