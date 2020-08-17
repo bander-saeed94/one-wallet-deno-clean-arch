@@ -32,7 +32,7 @@ export default class UserRoutes {
           requestBody,
         );
         //presenter
-        c.response.body = presenter.present;
+        c.response.body = presenter.present.body;
         c.response.status = presenter.present.httpStatus
       });
   }

@@ -25,7 +25,7 @@ export default class UserRoutes {
         registerUserByPhoneNumberRequest,
       );
       //presenter
-      c.json(presenter.present, presenter.present.httpStatus)
+      c.json(presenter.present.body, presenter.present.httpStatus)
     });
   }
 }
