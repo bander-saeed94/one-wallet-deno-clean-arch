@@ -1,9 +1,9 @@
 import type { Group } from "https://deno.land/x/abc@v1.0.3/mod.ts";
-import { Context } from "https://deno.land/x/abc@v1.0.3/mod.ts";
+import { Context } from 'https://deno.land/x/abc@v1.0.3/mod.ts';
 import RegisterUserByPhoneNumberRequest from "../../../../Adapters/controllers/RegisterUserByPhoneNumber/RegisterUserByPhoneNumberRequest.ts";
 import RestConfig from "../../../../../config/rest-config.ts";
 import RegisterUserByPhoneNumberController from "../../../../Adapters/controllers/RegisterUserByPhoneNumber/RegisterUserByPhoneNumberController.ts";
-
+import { Status } from "https://deno.land/std@0.65.0/http/http_status.ts";
 export default class UserRoutes {
   constructor(
     private readonly restConfig: RestConfig,
@@ -25,7 +25,7 @@ export default class UserRoutes {
         registerUserByPhoneNumberRequest,
       );
       //presenter
-      return presenter.present;
+      c.json(presenter.present, presenter.present.httpStatus)
     });
   }
 }

@@ -33,6 +33,7 @@ export default class UserRoutes {
         );
         //presenter
         c.response.body = presenter.present;
+        c.response.status = presenter.present.httpStatus
       });
   }
 }

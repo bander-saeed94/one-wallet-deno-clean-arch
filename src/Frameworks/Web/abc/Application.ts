@@ -9,9 +9,8 @@ export default class AbcApplication {
   public async run() {
     const app = new Application();
 
-    new UserRoutes(this.restConfig, app.group("user"));
+    new UserRoutes(this.restConfig, app.group("/api/v1/users"));
 
-    app.start({ port: 8081 });
-    console.log("Finished.");
+    await app.start({ port: 8081 });
   }
 }
