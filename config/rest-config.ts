@@ -29,8 +29,4 @@ export default class RestConfig {
       registerByPhoneNumberPresenter,
     );
   }
-
-  public registerUserByPhoneNumberPresenter(): RegisterUserByPhoneNumberPresenter {
-    return new RegisterUserByPhoneNumberPresenter();
-  }
 }

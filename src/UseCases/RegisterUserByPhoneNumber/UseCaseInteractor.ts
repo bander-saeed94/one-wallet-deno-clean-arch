@@ -43,7 +43,7 @@ export default class RegisterUserByPhoneNumberInteractor
         value: input.password,
         reason: "shortPassword",
         defaultMessage:
-          `password length: ${input.password.length} is less than minimumPasswordLength ${minimumPasswordLength}`,
+          `password length: ${input.password.length} is less than minimum password length ${minimumPasswordLength}`,
       });
     }
     const inputHasInvalidFields = invalidFields.length > 0;

@@ -1,8 +1,8 @@
 import OakApplication from "./Application.ts";
-import RestConfig from "../../../../config/rest-config.ts";
+import OakConfig from "./Config.ts";
 
-const restConfig = new RestConfig();
+const oakConfig = new OakConfig();
 
-const oakApplication = new OakApplication(restConfig);
+const oakApplication = new OakApplication(oakConfig);
 
 await oakApplication.run();
