@@ -31,11 +31,16 @@ export default class RegisterUserByPhoneNumberPresenter
     };
   }
 
-  Ok(createdUser: User): void {
+  async Ok(createdUser: User): Promise<void> {
+    await this.delay(300);
     console.log("user created");
     this.restPresentation = {
       httpStatus: 201,
       body: RegisterUserByPhoneNumberResponse.from(createdUser),
     };
+  }
+
+  delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 }
