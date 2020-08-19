@@ -48,14 +48,14 @@ export default class RegisterUserByPhoneNumberInteractor
     }
     const inputHasInvalidFields = invalidFields.length > 0;
     if (inputHasInvalidFields) {
-      this.outputPort.invalidInputs(invalidFields);
+      await this.outputPort.invalidInputs(invalidFields);
       return;
     }
 
     let existingUser = this.userRepo.findByPhoneNumber(input.phoneNumber);
     let userExist = existingUser instanceof User;
     if (userExist) {
-      this.outputPort.userAlreadyExist(existingUser as User);
+      await this.outputPort.userAlreadyExist(existingUser as User);
       return;
     }
 
@@ -73,7 +73,7 @@ export default class RegisterUserByPhoneNumberInteractor
       "user_has_been_created_with_phone_number",
       input.phoneNumber,
     );
-    this.outputPort.Ok(user);
+    await this.outputPort.Ok(user);
     return;
   }
 }

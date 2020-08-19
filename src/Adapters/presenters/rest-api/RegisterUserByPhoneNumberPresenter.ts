@@ -3,19 +3,22 @@ import InvalidField from "../../../UseCases/InvalidField.ts";
 import User from "../../../Entities/user.ts";
 import RestPresentation from "./RestPresentation.ts";
 import RegisterUserByPhoneNumberResponse from "./RegisterUserByPhoneNumberResponse.ts";
-
+import { resolve } from "https://deno.land/std@0.62.0/path/win32.ts";
 export default class RegisterUserByPhoneNumberPresenter
   implements RegisterUserByPhoneNumberOutputPort {
   private restPresentation: RestPresentation = {
-    httpStatus: 500,
     body: "default resp",
+    httpStatus: 500,
   };
 
-  public get present(): RestPresentation {
+  constructor() {
+  }
+
+  public async present(): Promise<RestPresentation> {
     return this.restPresentation;
   }
 
-  invalidInputs(fields: InvalidField[]): void {
+  async invalidInputs(fields: InvalidField[]): Promise<void> {
     console.log(`InvalidField: ${JSON.stringify(fields)}`);
     this.restPresentation = {
       httpStatus: 400,
@@ -23,7 +26,7 @@ export default class RegisterUserByPhoneNumberPresenter
     };
   }
 
-  userAlreadyExist(existingUser: User): void {
+  async userAlreadyExist(existingUser: User): Promise<void> {
     console.log("user already exist");
     this.restPresentation = {
       httpStatus: 409,
@@ -32,15 +35,10 @@ export default class RegisterUserByPhoneNumberPresenter
   }
 
   async Ok(createdUser: User): Promise<void> {
-    await this.delay(300);
     console.log("user created");
     this.restPresentation = {
       httpStatus: 201,
       body: RegisterUserByPhoneNumberResponse.from(createdUser),
     };
-  }
-
-  delay(ms: number) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 }

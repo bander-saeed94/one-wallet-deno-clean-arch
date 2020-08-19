@@ -1,8 +1,7 @@
 import { Router } from "https://deno.land/x/oak/mod.ts";
 import RegisterUserByPhoneNumberRequest from "../../../../Adapters/controllers/RegisterUserByPhoneNumber/RegisterUserByPhoneNumberRequest.ts";
-import RestConfig from "../../../../../config/rest-config.ts";
-import RegisterUserByPhoneNumberController from "../../../../Adapters/controllers/RegisterUserByPhoneNumber/RegisterUserByPhoneNumberController.ts";
 import OakConfig from "../Config.ts";
+import RestPresentation from "../../../../Adapters/presenters/rest-api/RestPresentation.ts";
 
 export default class UserRoutes {
   public readonly router = new Router({
@@ -20,16 +19,15 @@ export default class UserRoutes {
         const requestBody: RegisterUserByPhoneNumberRequest = await c.request
           .body().value;
 
-        (await c.request.body()).value;
         let presenter = this.oakConfig.registerUserByPhoneNumberPresenter();
         let registerUserByPhoneNumberController = this.oakConfig
           .registerUserByPhoneNumberController(presenter);
         await registerUserByPhoneNumberController.registerUser(
           requestBody,
         );
-        //presenter
-        c.response.body = presenter.present.body;
-        c.response.status = presenter.present.httpStatus;
+        let resp = await presenter.present();
+        c.response.body = resp.body;
+        c.response.status = resp.httpStatus;
       });
   }
 }

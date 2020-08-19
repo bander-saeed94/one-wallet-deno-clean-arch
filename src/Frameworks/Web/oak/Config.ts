@@ -1,6 +1,7 @@
 import RestConfig from "../../../../config/rest-config.ts";
 import RegisterUserByPhoneNumberController from "../../../Adapters/controllers/RegisterUserByPhoneNumber/RegisterUserByPhoneNumberController.ts";
 import RegisterUserByPhoneNumberPresenter from "../../../Adapters/presenters/rest-api/RegisterUserByPhoneNumberPresenter.ts";
+import RestPresentation from "../../../Adapters/presenters/rest-api/RestPresentation.ts";
 
 export default class OakConfig {
   private readonly restConfig = new RestConfig();
