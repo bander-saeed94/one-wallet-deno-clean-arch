@@ -20,7 +20,7 @@ export default class UserRoutes {
         registerUserByPhoneNumberRequest,
       );
       //presenter
-      let resp = await presenter.present();
+      let resp = presenter.present();
 
       c.json(resp.body, resp.httpStatus);
     });

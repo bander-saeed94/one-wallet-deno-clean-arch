@@ -3,7 +3,6 @@ import InvalidField from "../../../UseCases/InvalidField.ts";
 import User from "../../../Entities/user.ts";
 import RestPresentation from "./RestPresentation.ts";
 import RegisterUserByPhoneNumberResponse from "./RegisterUserByPhoneNumberResponse.ts";
-import { resolve } from "https://deno.land/std@0.62.0/path/win32.ts";
 export default class RegisterUserByPhoneNumberPresenter
   implements RegisterUserByPhoneNumberOutputPort {
   private restPresentation: RestPresentation = {
@@ -14,7 +13,7 @@ export default class RegisterUserByPhoneNumberPresenter
   constructor() {
   }
 
-  public async present(): Promise<RestPresentation> {
+  public present(): RestPresentation {
     return this.restPresentation;
   }
 

@@ -25,7 +25,7 @@ export default class UserRoutes {
         await registerUserByPhoneNumberController.registerUser(
           requestBody,
         );
-        let resp = await presenter.present();
+        let resp = presenter.present();
         c.response.body = resp.body;
         c.response.status = resp.httpStatus;
       });
