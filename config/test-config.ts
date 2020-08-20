@@ -18,7 +18,11 @@ import {
   RegisterUserByPhoneNumberInteractor,
   RegisterUserByPhoneNumberOutputPort,
 } from "../src/UseCases/RegisterUserByPhoneNumber/mod.ts";
-
+import {
+  SendOtpToPhoneNumberInputPort,
+  SendOtpToPhoneNumberInteractor,
+  SendOtpToPhoneNumberOutputPort,
+} from "../src/UseCases/SendOtpToPhoneNumber/mod.ts";
 export default class TestConfig {
   readonly userRepo = new InMemoryUserRepo();
   private readonly uuidGenerator = new UUIDGenerator();
@@ -30,6 +34,7 @@ export default class TestConfig {
   private readonly otpRepo = new InMemoryOtpRepo();
   private readonly otpConfig = new OtpConfigImpl(5, ShaAlg.sha1, 4);
 
+  //refactor
   public registerUserByPhoneNumberUseCase(
     registerByPhoneNumberPresenter: RegisterUserByPhoneNumberOutputPort,
   ): RegisterUserByPhoneNumberInputPort {
@@ -41,6 +46,19 @@ export default class TestConfig {
       registerByPhoneNumberPresenter,
     );
   }
+  public sendOtpToPhoneNumberUseCase(
+    sendOtpToPhoneNumberPresenter: SendOtpToPhoneNumberOutputPort,
+  ): SendOtpToPhoneNumberInputPort {
+    return new SendOtpToPhoneNumberInteractor(
+      this.behin,
+      this.fakeSmsSender,
+      this.otpRepo,
+      this.otpConfig,
+      this.userRepo,
+      this.eventEmitter,
+      sendOtpToPhoneNumberPresenter,
+    );
+  }
 
   public createUserByPhoneNumberUseCase(): CreateUserByPhoneNumberUseCase {
     return new CreateUserByPhoneNumberUseCase(
@@ -50,22 +68,22 @@ export default class TestConfig {
       this.eventEmitter,
     );
   }
-  public sendOtpToPhoneNumberUseCase(): SendOtpToPhoneNumberUseCase {
-    return new SendOtpToPhoneNumberUseCase(
-      this.behin,
-      this.fakeSmsSender,
-      this.otpRepo,
-      this.otpConfig,
-      this.userRepo,
-    );
-  }
+  // public sendOtpToPhoneNumberUseCase(): SendOtpToPhoneNumberUseCase {
+  //   return new SendOtpToPhoneNumberUseCase(
+  //     this.behin,
+  //     this.fakeSmsSender,
+  //     this.otpRepo,
+  //     this.otpConfig,
+  //     this.userRepo,
+  //   );
+  // }
 
   public eventListenerOnUserCreated(
-    sendOtpToPhoneNumberUseCase: SendOtpToPhoneNumberUseCase,
+    sendOtpToPhoneNumberInteractor: SendOtpToPhoneNumberInputPort,
   ): ListenerOnUserCreatedEvent {
     return new ListenerOnUserCreatedEvent(
       this.eventEmitter,
-      sendOtpToPhoneNumberUseCase,
+      sendOtpToPhoneNumberInteractor,
     );
   }
 

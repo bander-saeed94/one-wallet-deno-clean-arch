@@ -1,11 +1,12 @@
 import EventEmitter from "../../UseCases/port/event-emitter.ts";
-import SendOtpToPhoneNumberUseCase from "../../UseCases/send-otp-to-phone-number.ts";
+import { SendOtpToPhoneNumberInputPort } from "../SendOtpToPhoneNumber/mod.ts";
 
 export default class ListenerOnUserCreatedEvent {
   private numberOfEvents: number = 0;
   constructor(
     public readonly eventEmitter: EventEmitter,
-    public readonly sendOtpToPhoneNumberUseCase: SendOtpToPhoneNumberUseCase,
+    public readonly sendOtpToPhoneNumberInteractor:
+      SendOtpToPhoneNumberInputPort,
   ) {
     eventEmitter.on(
       "user_has_been_created_with_phone_number",
@@ -14,7 +15,7 @@ export default class ListenerOnUserCreatedEvent {
         console.log(
           "user_has_been_created_with_phone_number event has been received",
         );
-        sendOtpToPhoneNumberUseCase.sendOtp(phoneNumber);
+        sendOtpToPhoneNumberInteractor.execute({ phoneNumber });
       },
     );
   }

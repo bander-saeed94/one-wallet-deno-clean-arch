@@ -13,7 +13,7 @@ import OtpRepo from "../port/otp-repo.ts";
 import OtpConfig from "../port/otp-config.ts";
 import Otp from "../../Entities/otp.ts";
 
-export default class RegisterUserByPhoneNumberInteractor
+export default class SendOtpToPhoneNumberInteractor
   implements SendOtpToPhoneNumberInputPort {
   constructor(
     private readonly otpUtil: OtpUtil,
@@ -55,7 +55,7 @@ export default class RegisterUserByPhoneNumberInteractor
     const userExistAndVerified = userExist &&
       existingUser?.verifiedByPhoneNumber;
     if (userExistAndVerified) {
-      await this.outputPort.userAlreadyVerified();
+      await this.outputPort.userIsAlreadyVerified();
       return;
     }
     const timeInterval = this.otpConfig.timeInterval;

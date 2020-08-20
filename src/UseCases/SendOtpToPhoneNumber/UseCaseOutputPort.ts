@@ -4,7 +4,7 @@ export default interface SendOtpToPhoneNumberOutputPort {
 
   otpSent(): Promise<void>;
 
-  userAlreadyVerified(): Promise<void>;
+  userIsAlreadyVerified(): Promise<void>;
 
   userIsNotRegistered(): Promise<void>;
 }
