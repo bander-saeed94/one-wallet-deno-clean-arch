@@ -8,15 +8,15 @@ export default class RegisterByPhoneNumberPresenterFake
   public existingUser: User | undefined;
   public createdUser: User | undefined;
 
-  invalidInputs(fields: InvalidField[]): void {
+  async invalidInputs(fields: InvalidField[]): Promise<void> {
     this.invalidFields = fields;
   }
 
-  userAlreadyExist(existingUser: User): void {
+  async userAlreadyExist(existingUser: User): Promise<void> {
     this.existingUser = existingUser;
   }
 
-  Ok(createdUser: User): void {
+  async Ok(createdUser: User): Promise<void> {
     this.createdUser = createdUser;
   }
 }
