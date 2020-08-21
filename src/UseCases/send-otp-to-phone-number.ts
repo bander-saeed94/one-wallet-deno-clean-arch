@@ -1,5 +1,5 @@
 import OtpUtil from "./port/otp-util.ts";
-import SmsSender from "./port/sms-sender.ts";
+import SmsSender from "./port/SmsSender.ts";
 import Otp from "../Entities/otp.ts";
 import OtpRepo from "./port/otp-repo.ts";
 import OtpConfig from "./port/otp-config.ts";
@@ -30,7 +30,7 @@ export default class SendOtpToPhoneNumberUseCase {
 
     const otp: Otp = this.otpUtil.generate(timeInterval, alg, digits);
     this.otpRepo.create(to, otp);
-    this.smsSender.send(to, `here is the otp ${otp.token}`);
+    this.smsSender.sendOtpForVerification(otp.token, to);
     return otp.token;
   }
 }

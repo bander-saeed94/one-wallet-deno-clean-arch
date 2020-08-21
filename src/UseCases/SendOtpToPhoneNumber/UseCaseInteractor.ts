@@ -8,7 +8,7 @@ import UserRepo from "../port/user-repo.ts";
 import EventEmitter from "../port/event-emitter.ts";
 import User from "../../Entities/user.ts";
 import OtpUtil from "../port/otp-util.ts";
-import SmsSender from "../port/sms-sender.ts";
+import SmsSender from "../port/SmsSender.ts";
 import OtpRepo from "../port/otp-repo.ts";
 import OtpConfig from "../port/otp-config.ts";
 import Otp from "../../Entities/otp.ts";
@@ -64,7 +64,7 @@ export default class SendOtpToPhoneNumberInteractor
 
     const otp: Otp = this.otpUtil.generate(timeInterval, alg, digits);
     this.otpRepo.create(input.phoneNumber, otp);
-    this.smsSender.send(input.phoneNumber, `here is the otp ${otp.token}`);
+    this.smsSender.sendOtpForVerification(otp.token, input.phoneNumber);
     //emit event user has been created
     this.eventEmitter.emit(
       "otp_been_sent_to_phone_number",
