@@ -3,22 +3,22 @@ import UserRepo from "../../../../../src/UseCases/port/user-repo.ts";
 
 export default class InMemoryUserRepoFake implements UserRepo {
   private users: User[] = [
-    {
-      id: "a5d0f31d-8652-4210-b55f-5a13cc3c0eab",
-      phoneNumber: "966501766627",
-      firstName: "Bander",
-      lastName: "Alshammari",
-      hashedPassword: "Aa123456",
-      verifiedByPhoneNumber: false,
-    },
-    {
-      id: "8b19fbac-5e17-4cec-a8e4-d496908b85f8",
-      phoneNumber: "966501766628",
-      firstName: "Bander",
-      lastName: "Alshammari",
-      hashedPassword: "Aa123456",
-      verifiedByPhoneNumber: false,
-    },
+    new User(
+      "a5d0f31d-8652-4210-b55f-5a13cc3c0eab",
+      "966501766627",
+      "Bander",
+      "Alshammari",
+      "hashedAa123456",
+      false,
+    ),
+    new User(
+      "8b19fbac-5e17-4cec-a8e4-d496908b85f8",
+      "966501766628",
+      "Bander",
+      "Alshammari",
+      "hashedAa123456",
+      false,
+    ),
   ];
   create(user: User): User {
     this.users.push(user);

@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Deno",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "deno",
+            "runtimeArgs": ["test", "--allow-net","--unstable", "tests/core/UnitTests/use-case-tests/RegisterByPhoneNumber/RegisterByPhoneNumber.test.ts"],
+            "outputCapture": "std",
+            "port": 9229
+        }
+    ]
+}

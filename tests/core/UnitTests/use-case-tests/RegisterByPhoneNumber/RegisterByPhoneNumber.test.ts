@@ -6,23 +6,24 @@ import {
 import TestConfig from "../../../../../config/test-config.ts";
 import { RegisterUserByPhoneNumberInput } from "../../../../../src/UseCases/RegisterUserByPhoneNumber/mod.ts";
 import RegisterByPhoneNumberPresenterFake from "../../presenters/RegisterByPhoneNumberPresenterFake.ts";
+import UnitTestConfig from "../../../../../config/UnitTestConfig.ts";
 
 Deno.test("Create User", async () => {
-  let testConfig = new TestConfig();
+  let unitTestConfig = new UnitTestConfig();
   let presenter = new RegisterByPhoneNumberPresenterFake();
   let input: RegisterUserByPhoneNumberInput = {
-    phoneNumber: "966501766627",
+    phoneNumber: "966501766626",
     password: "Aa123456",
     firstName: "Bander",
     lastName: "Alshammari",
   };
-  let registerUserByPhoneNumberUseCase = testConfig
+  let registerUserByPhoneNumberUseCase = unitTestConfig
     .registerUserByPhoneNumberUseCase(presenter);
   await registerUserByPhoneNumberUseCase.execute(
     input,
   );
   let user = presenter.createdUser!;
-  assertEquals(user.phoneNumber, "966501766627");
+  assertEquals(user.phoneNumber, "966501766626");
   assertNotEquals(user.hashedPassword, "Aa123456");
   assertEquals(user.firstName, "Bander");
   assertEquals(user.lastName, "Alshammari");
@@ -33,21 +34,16 @@ Deno.test("Create User", async () => {
 
 Deno.test("Reject Create User When Already Exist", async () => {
   //given
-  let testConfig = new TestConfig();
+  let unitTestConfig = new UnitTestConfig();
   let input: RegisterUserByPhoneNumberInput = {
     phoneNumber: "966501766627",
     password: "Aa123456",
     firstName: "Bander",
     lastName: "Alshammari",
   };
-  let registerUserByPhoneNumberUseCase = testConfig
-    .registerUserByPhoneNumberUseCase(new RegisterByPhoneNumberPresenterFake());
-  await registerUserByPhoneNumberUseCase.execute(
-    input,
-  );
   //when
   let presenter = new RegisterByPhoneNumberPresenterFake();
-  registerUserByPhoneNumberUseCase = testConfig
+  let registerUserByPhoneNumberUseCase = unitTestConfig
     .registerUserByPhoneNumberUseCase(presenter);
   await registerUserByPhoneNumberUseCase.execute(
     input,
@@ -65,7 +61,7 @@ Deno.test("Reject Create User When Already Exist", async () => {
 
 Deno.test("Create User With Non Saudi Number", async () => {
   //given
-  let testConfig = new TestConfig();
+  let unitTestConfig = new UnitTestConfig();
   let presenter = new RegisterByPhoneNumberPresenterFake();
   let input: RegisterUserByPhoneNumberInput = {
     phoneNumber: "960501766627",
@@ -73,7 +69,7 @@ Deno.test("Create User With Non Saudi Number", async () => {
     firstName: "Bander",
     lastName: "Alshammari",
   };
-  let registerUserByPhoneNumberUseCase = testConfig
+  let registerUserByPhoneNumberUseCase = unitTestConfig
     .registerUserByPhoneNumberUseCase(presenter);
   //when
   await registerUserByPhoneNumberUseCase.execute(
@@ -88,7 +84,7 @@ Deno.test("Create User With Non Saudi Number", async () => {
 
 Deno.test("Create User With Invalid Phone Number", async () => {
   //given
-  let testConfig = new TestConfig();
+  let unitTestConfig = new UnitTestConfig();
   let presenter = new RegisterByPhoneNumberPresenterFake();
   let input: RegisterUserByPhoneNumberInput = {
     phoneNumber: "96050176662",
@@ -96,7 +92,7 @@ Deno.test("Create User With Invalid Phone Number", async () => {
     firstName: "Bander",
     lastName: "Alshammari",
   };
-  let registerUserByPhoneNumberUseCase = testConfig
+  let registerUserByPhoneNumberUseCase = unitTestConfig
     .registerUserByPhoneNumberUseCase(presenter);
   //when
   await registerUserByPhoneNumberUseCase.execute(
@@ -111,7 +107,7 @@ Deno.test("Create User With Invalid Phone Number", async () => {
 
 Deno.test("Create User With less than 8 char password", async () => {
   //given
-  let testConfig = new TestConfig();
+  let unitTestConfig = new UnitTestConfig();
   let presenter = new RegisterByPhoneNumberPresenterFake();
   let input: RegisterUserByPhoneNumberInput = {
     phoneNumber: "966501766627",
@@ -119,7 +115,7 @@ Deno.test("Create User With less than 8 char password", async () => {
     firstName: "Bander",
     lastName: "Alshammari",
   };
-  let registerUserByPhoneNumberUseCase = testConfig
+  let registerUserByPhoneNumberUseCase = unitTestConfig
     .registerUserByPhoneNumberUseCase(presenter);
   //when
   await registerUserByPhoneNumberUseCase.execute(
@@ -134,7 +130,7 @@ Deno.test("Create User With less than 8 char password", async () => {
 
 Deno.test("Invalid phone number and password", async () => {
   //given
-  let testConfig = new TestConfig();
+  let unitTestConfig = new UnitTestConfig();
   let presenter = new RegisterByPhoneNumberPresenterFake();
   let input: RegisterUserByPhoneNumberInput = {
     phoneNumber: "96650176662",
@@ -142,7 +138,7 @@ Deno.test("Invalid phone number and password", async () => {
     firstName: "Bander",
     lastName: "Alshammari",
   };
-  let registerUserByPhoneNumberUseCase = testConfig
+  let registerUserByPhoneNumberUseCase = unitTestConfig
     .registerUserByPhoneNumberUseCase(presenter);
   //when
   await registerUserByPhoneNumberUseCase.execute(
