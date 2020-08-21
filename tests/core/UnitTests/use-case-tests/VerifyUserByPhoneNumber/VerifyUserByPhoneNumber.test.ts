@@ -17,9 +17,9 @@ Deno.test("Verify Non Registered User", async () => {
     enteredToken: "1234",
   });
   assertEquals(presenter.userIsNotRegisteredCalled, true);
+  assertEquals(presenter.otpHasNotBeenGeneratedCalled, false);
   assertEquals(presenter.unmatchedTokenCalled, false);
   assertEquals(presenter.userHasBeenVerifiedCalled, false);
-  assertEquals(presenter.otpHasNotBeenGeneratedCalled, false);
   assertEquals(presenter.invalidFields.length, 0);
 });
 
@@ -33,8 +33,8 @@ Deno.test("Verify User, Token not generated", async () => {
     enteredToken: "1234",
   });
   assertEquals(presenter.userIsNotRegisteredCalled, false);
+  assertEquals(presenter.otpHasNotBeenGeneratedCalled, true);
   assertEquals(presenter.unmatchedTokenCalled, false);
   assertEquals(presenter.userHasBeenVerifiedCalled, false);
-  assertEquals(presenter.otpHasNotBeenGeneratedCalled, true);
   assertEquals(presenter.invalidFields.length, 0);
 });
