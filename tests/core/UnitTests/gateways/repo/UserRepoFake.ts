@@ -11,6 +11,14 @@ export default class InMemoryUserRepoFake implements UserRepo {
       hashedPassword: "Aa123456",
       verifiedByPhoneNumber: false,
     },
+    {
+      id: "8b19fbac-5e17-4cec-a8e4-d496908b85f8",
+      phoneNumber: "966501766628",
+      firstName: "Bander",
+      lastName: "Alshammari",
+      hashedPassword: "Aa123456",
+      verifiedByPhoneNumber: false,
+    },
   ];
   create(user: User): User {
     this.users.push(user);

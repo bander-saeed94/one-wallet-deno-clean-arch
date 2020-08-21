@@ -7,6 +7,7 @@ import OtpConfigImpl from "../src/Adapters/lib/otp-config/default-otp-config.ts"
 import { ShaAlg } from "../src/Entities/sha-alg.ts";
 import InMemoryUserRepoFake from "../tests/core/UnitTests/gateways/repo/UserRepoFake.ts";
 import InMemoryOtpRepoFake from "../tests/core/UnitTests/gateways/repo/OtpRepoFake.ts";
+import OtpUtilFake from '../tests/core/UnitTests/lib/otp-util/OtpUtilFake.ts';
 
 import {
   RegisterUserByPhoneNumberInputPort,
@@ -32,7 +33,8 @@ export default class UnitTestConfig {
   private readonly bcryptHasher = new BcryptHasher();
   private readonly eventEmitter = new EventEmitterImpl();
 
-  private readonly behin = new BehinOtp();
+  private readonly otpUtilFake = new OtpUtilFake();
+
   private readonly smsSenderImpl = new SmsSenderImpl();
   private readonly otpConfig = new OtpConfigImpl(5, ShaAlg.sha1, 4);
 
@@ -66,7 +68,7 @@ export default class UnitTestConfig {
     verifyUserByPhoneNumberOutputPort: VerifyUserByPhoneNumberOutputPort,
   ): VerifyUserByPhoneNumberInputPort {
     return new VerifyUserByPhoneNumberInteractor(
-      this.behin,
+      this.otpUtilFake,
       this.otpRepo,
       this.userRepo,
       verifyUserByPhoneNumberOutputPort,
