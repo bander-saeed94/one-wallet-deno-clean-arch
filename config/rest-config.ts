@@ -2,9 +2,6 @@ import InMemoryUserRepo from "../src/Adapters/gateways/repo/in-memory/in-memory-
 import UUIDGenerator from "../src/Adapters/lib/id-generator/uuid-generator.ts";
 import BcryptHasher from "../src/Adapters/lib/password-hasher/bcrypt.ts";
 import EventEmitterImpl from "../src/Adapters/event-emitter/class-event-emitter.ts";
-import RegisterUserByPhoneNumberPresenter from "../src/Adapters/presenters/rest-api/RegisterUserByPhoneNumberPresenter.ts";
-import ListenerOnUserCreatedEvent from "../src/UseCases/EventsReaction/ListenerOnUserCreatedEvent.ts";
-import SendOtpToPhoneNumberUseCase from "../src/UseCases/send-otp-to-phone-number.ts";
 
 import {
   RegisterUserByPhoneNumberInputPort,
