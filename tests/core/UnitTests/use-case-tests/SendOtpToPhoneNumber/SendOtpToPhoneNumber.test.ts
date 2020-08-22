@@ -3,18 +3,17 @@ import {
   assertNotEquals,
 } from "https://deno.land/std/testing/asserts.ts";
 
-import TestConfig from "../../../../../config/test-config.ts";
 import { SendOtpToPhoneNumberInput } from "../../../../../src/UseCases/SendOtpToPhoneNumber/mod.ts";
 import SendOtpToPhoneNumberPresenterFake from "../../presenters/SendOtpToPhoneNumberPresenterFake.ts";
-import RegisterByPhoneNumberPresenterFake from "../../presenters/RegisterByPhoneNumberPresenterFake.ts";
+import UnitTestConfig from "../../../../../config/UnitTestConfig.ts";
 
 Deno.test("Send Otp To None Registered User", async () => {
-  let testConfig = new TestConfig();
+  let unitTestConfig = new UnitTestConfig();
   let presenter = new SendOtpToPhoneNumberPresenterFake();
   let input: SendOtpToPhoneNumberInput = {
-    phoneNumber: "966501766627",
+    phoneNumber: "966501766626",
   };
-  let sendOtpToPhoneNumberUseCase = testConfig
+  let sendOtpToPhoneNumberUseCase = unitTestConfig
     .sendOtpToPhoneNumberUseCase(presenter);
   await sendOtpToPhoneNumberUseCase.execute(
     input,
@@ -28,25 +27,14 @@ Deno.test("Send Otp To None Registered User", async () => {
 });
 
 Deno.test("Send Otp to Non Verified User", async () => {
-  let testConfig = new TestConfig();
+  let unitTestConfig = new UnitTestConfig();
 
-  //given user is registered
-  let registerUserByPhoneNumberUseCase = testConfig
-    .registerUserByPhoneNumberUseCase(new RegisterByPhoneNumberPresenterFake());
-  await registerUserByPhoneNumberUseCase.execute(
-    {
-      phoneNumber: "966501766627",
-      password: "Aa123456",
-      firstName: "Bander",
-      lastName: "Alshammari",
-    },
-  );
   //when
   let presenter = new SendOtpToPhoneNumberPresenterFake();
   let input: SendOtpToPhoneNumberInput = {
     phoneNumber: "966501766627",
   };
-  let sendOtpToPhoneNumberUseCase = testConfig
+  let sendOtpToPhoneNumberUseCase = unitTestConfig
     .sendOtpToPhoneNumberUseCase(presenter);
   await sendOtpToPhoneNumberUseCase.execute(
     input,
@@ -62,5 +50,24 @@ Deno.test("Send Otp to Non Verified User", async () => {
 });
 
 Deno.test("Send Otp to Verified User", async () => {
-  //todo
+  let unitTestConfig = new UnitTestConfig();
+
+  //when
+  let presenter = new SendOtpToPhoneNumberPresenterFake();
+  let input: SendOtpToPhoneNumberInput = {
+    phoneNumber: "966501766628",
+  };
+  let sendOtpToPhoneNumberUseCase = unitTestConfig
+    .sendOtpToPhoneNumberUseCase(presenter);
+  await sendOtpToPhoneNumberUseCase.execute(
+    input,
+  );
+  let otpSentCalled = presenter.otpSentCalled;
+  let userIsAlreadyVerifiedCalled = presenter.userIsAlreadyVerifiedCalled;
+  let userIsNotRegisteredCalled = presenter.userIsNotRegisteredCalled;
+
+  //then
+  assertEquals(otpSentCalled, false);
+  assertEquals(userIsAlreadyVerifiedCalled, true);
+  assertEquals(userIsNotRegisteredCalled, false);
 });

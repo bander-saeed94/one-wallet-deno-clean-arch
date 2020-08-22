@@ -3,7 +3,6 @@ import {
   assertNotEquals,
 } from "https://deno.land/std/testing/asserts.ts";
 
-import TestConfig from "../../../../../config/test-config.ts";
 import { RegisterUserByPhoneNumberInput } from "../../../../../src/UseCases/RegisterUserByPhoneNumber/mod.ts";
 import RegisterByPhoneNumberPresenterFake from "../../presenters/RegisterByPhoneNumberPresenterFake.ts";
 import UnitTestConfig from "../../../../../config/UnitTestConfig.ts";

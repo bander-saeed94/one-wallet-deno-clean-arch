@@ -49,19 +49,19 @@ export default class UnitTestConfig {
     );
   }
 
-  //   public sendOtpToPhoneNumberUseCase(
-  //     sendOtpToPhoneNumberPresenter: SendOtpToPhoneNumberOutputPort,
-  //   ): SendOtpToPhoneNumberInputPort {
-  //     return new SendOtpToPhoneNumberInteractor(
-  //       this.behin,
-  //       this.smsSenderImpl,
-  //       this.otpRepo,
-  //       this.otpConfig,
-  //       this.userRepo,
-  //       this.eventEmitter,
-  //       sendOtpToPhoneNumberPresenter,
-  //     );
-  //   }
+  public sendOtpToPhoneNumberUseCase(
+    sendOtpToPhoneNumberPresenter: SendOtpToPhoneNumberOutputPort,
+  ): SendOtpToPhoneNumberInputPort {
+    return new SendOtpToPhoneNumberInteractor(
+      this.otpUtilFake,
+      this.smsSenderImpl,
+      this.otpRepo,
+      this.otpConfig,
+      this.userRepo,
+      this.eventEmitter,
+      sendOtpToPhoneNumberPresenter,
+    );
+  }
   public verifyUserByPhoneNumberUseCase(
     verifyUserByPhoneNumberOutputPort: VerifyUserByPhoneNumberOutputPort,
   ): VerifyUserByPhoneNumberInputPort {

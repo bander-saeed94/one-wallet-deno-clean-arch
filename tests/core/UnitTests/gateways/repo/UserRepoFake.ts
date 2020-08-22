@@ -17,7 +17,7 @@ export default class InMemoryUserRepoFake implements UserRepo {
       "Bander",
       "Alshammari",
       "hashedAa123456",
-      false,
+      true,
     ),
   ];
   create(user: User): User {
