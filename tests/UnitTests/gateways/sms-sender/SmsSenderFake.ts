@@ -1,4 +1,4 @@
-import SmsSender from "../../../../../src/UseCases/port/SmsSender.ts";
+import SmsSender from "../../../../src/UseCases/port/SmsSender.ts";
 
 export default class SmsSenderFake implements SmsSender {
   public to: string | undefined = undefined;

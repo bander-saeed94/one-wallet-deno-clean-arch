@@ -1,5 +1,5 @@
-import InvalidField from "../../../../src/UseCases/InvalidField.ts";
-import { SendOtpToPhoneNumberOutputPort } from "../../../../src/UseCases/SendOtpToPhoneNumber/mod.ts";
+import InvalidField from "../../../src/UseCases/InvalidField.ts";
+import { SendOtpToPhoneNumberOutputPort } from "../../../src/UseCases/SendOtpToPhoneNumber/mod.ts";
 
 export default class SendOtpToPhoneNumberPresenterFake
   implements SendOtpToPhoneNumberOutputPort {

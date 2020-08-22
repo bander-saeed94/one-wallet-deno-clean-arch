@@ -3,10 +3,10 @@ import EventEmitterImpl from "../src/Adapters/event-emitter/class-event-emitter.
 import SmsSenderImpl from "../src/Adapters/gateways/sms-sender/SmsSenderImpl.ts";
 import OtpConfigImpl from "../src/Adapters/lib/otp-config/default-otp-config.ts";
 import { ShaAlg } from "../src/Entities/sha-alg.ts";
-import InMemoryUserRepoFake from "../tests/core/UnitTests/gateways/repo/UserRepoFake.ts";
-import InMemoryOtpRepoFake from "../tests/core/UnitTests/gateways/repo/OtpRepoFake.ts";
-import OtpUtilFake from "../tests/core/UnitTests/lib/otp-util/OtpUtilFake.ts";
-import PassowrdHasherFake from "../tests/core/UnitTests/lib/otp-util/PasswordHasherFake.ts";
+import InMemoryUserRepoFake from "../tests/UnitTests/gateways/repo/UserRepoFake.ts";
+import InMemoryOtpRepoFake from "../tests/UnitTests/gateways/repo/OtpRepoFake.ts";
+import OtpUtilFake from "../tests/UnitTests/lib/otp-util/OtpUtilFake.ts";
+import PassowrdHasherFake from "../tests/UnitTests/lib/otp-util/PasswordHasherFake.ts";
 
 import {
   RegisterUserByPhoneNumberInputPort,

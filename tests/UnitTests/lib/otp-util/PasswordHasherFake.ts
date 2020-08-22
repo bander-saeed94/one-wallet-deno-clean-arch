@@ -1,4 +1,4 @@
-import PasswordHasher from "../../../../../src/UseCases/port/password-hasher.ts";
+import PasswordHasher from "../../../../src/UseCases/port/password-hasher.ts";
 
 export default class PassowrdHasherFake implements PasswordHasher {
   async hash(password: string): Promise<string> {

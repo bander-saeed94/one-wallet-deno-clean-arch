@@ -5,7 +5,7 @@ import {
 } from "https://deno.land/std/testing/asserts.ts";
 
 import VerifyUserByPhoneNumberPresenterFake from "../../presenters/VerifyUserByPhoneNumberPresenterFake.ts";
-import UnitTestConfig from "../../../../../config/UnitTestConfig.ts";
+import UnitTestConfig from "../../../../config/UnitTestConfig.ts";
 
 Deno.test("Verify Non Registered User", async () => {
   let testConfig = new UnitTestConfig();

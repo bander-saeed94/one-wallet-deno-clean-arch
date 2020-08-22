@@ -5,7 +5,7 @@ import {
 } from "https://deno.land/std/testing/asserts.ts";
 
 import LoginUserWithPhoneNumberPresenterFake from "../../presenters/LoginUserWithPhoneNumberPresenterFake.ts";
-import UnitTestConfig from "../../../../../config/UnitTestConfig.ts";
+import UnitTestConfig from "../../../../config/UnitTestConfig.ts";
 
 Deno.test("Given Non Existed User When Login User", async () => {
   let unitTestConfig = new UnitTestConfig();

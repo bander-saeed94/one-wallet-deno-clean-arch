@@ -3,9 +3,9 @@ import {
   assertNotEquals,
 } from "https://deno.land/std/testing/asserts.ts";
 
-import { RegisterUserByPhoneNumberInput } from "../../../../../src/UseCases/RegisterUserByPhoneNumber/mod.ts";
+import { RegisterUserByPhoneNumberInput } from "../../../../src/UseCases/RegisterUserByPhoneNumber/mod.ts";
 import RegisterByPhoneNumberPresenterFake from "../../presenters/RegisterByPhoneNumberPresenterFake.ts";
-import UnitTestConfig from "../../../../../config/UnitTestConfig.ts";
+import UnitTestConfig from "../../../../config/UnitTestConfig.ts";
 
 Deno.test("Create User", async () => {
   let unitTestConfig = new UnitTestConfig();

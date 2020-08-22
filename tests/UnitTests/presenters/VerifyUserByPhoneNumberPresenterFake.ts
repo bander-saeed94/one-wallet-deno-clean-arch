@@ -1,5 +1,5 @@
-import InvalidField from "../../../../src/UseCases/InvalidField.ts";
-import { VerifyUserByPhoneNumberOutputPort } from "../../../../src/UseCases/VerifyUserByPhoneNumber/mod.ts";
+import InvalidField from "../../../src/UseCases/InvalidField.ts";
+import { VerifyUserByPhoneNumberOutputPort } from "../../../src/UseCases/VerifyUserByPhoneNumber/mod.ts";
 
 export default class VerifyUserByPhoneNumberPresenterFake
   implements VerifyUserByPhoneNumberOutputPort {

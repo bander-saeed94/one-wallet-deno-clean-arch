@@ -3,9 +3,9 @@ import {
   assertNotEquals,
 } from "https://deno.land/std/testing/asserts.ts";
 
-import { SendOtpToPhoneNumberInput } from "../../../../../src/UseCases/SendOtpToPhoneNumber/mod.ts";
+import { SendOtpToPhoneNumberInput } from "../../../../src/UseCases/SendOtpToPhoneNumber/mod.ts";
 import SendOtpToPhoneNumberPresenterFake from "../../presenters/SendOtpToPhoneNumberPresenterFake.ts";
-import UnitTestConfig from "../../../../../config/UnitTestConfig.ts";
+import UnitTestConfig from "../../../../config/UnitTestConfig.ts";
 
 Deno.test("Send Otp To None Registered User", async () => {
   let unitTestConfig = new UnitTestConfig();

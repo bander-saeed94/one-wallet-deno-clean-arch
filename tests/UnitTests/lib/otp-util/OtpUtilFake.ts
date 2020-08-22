@@ -1,6 +1,6 @@
-import Otp from "../../../../../src/Entities/otp.ts";
-import { ShaAlg } from "../../../../../src/Entities/sha-alg.ts";
-import OtpUtil from "../../../../../src/UseCases/port/otp-util.ts";
+import Otp from "../../../../src/Entities/otp.ts";
+import { ShaAlg } from "../../../../src/Entities/sha-alg.ts";
+import OtpUtil from "../../../../src/UseCases/port/otp-util.ts";
 
 export default class OtpUtilFake implements OtpUtil {
   generate(timeInterval: number, alg: ShaAlg, digits: number): Otp {
