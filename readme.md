@@ -39,7 +39,7 @@ Upgrade:
 
 ## Testing
 
-```deno test --unstable --allow-net```
+```deno test```
 
 
 ### Executing program
