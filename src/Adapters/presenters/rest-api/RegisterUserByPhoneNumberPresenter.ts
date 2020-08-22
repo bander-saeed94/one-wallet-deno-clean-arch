@@ -18,7 +18,6 @@ export default class RegisterUserByPhoneNumberPresenter
   }
 
   async invalidInputs(fields: InvalidField[]): Promise<void> {
-    console.log(`InvalidField: ${JSON.stringify(fields)}`);
     this.restPresentation = {
       httpStatus: 400,
       body: fields,
@@ -26,7 +25,6 @@ export default class RegisterUserByPhoneNumberPresenter
   }
 
   async userAlreadyExist(existingUser: User): Promise<void> {
-    console.log("user already exist");
     this.restPresentation = {
       httpStatus: 409,
       body: "",
@@ -34,7 +32,6 @@ export default class RegisterUserByPhoneNumberPresenter
   }
 
   async Ok(createdUser: User): Promise<void> {
-    console.log("user created");
     this.restPresentation = {
       httpStatus: 201,
       body: RegisterUserByPhoneNumberResponse.from(createdUser),

@@ -19,6 +19,5 @@ export default class OakApplication {
     });
 
     await app.listen({ port: 8080 });
-    console.log("Finished.");
   }
 }
