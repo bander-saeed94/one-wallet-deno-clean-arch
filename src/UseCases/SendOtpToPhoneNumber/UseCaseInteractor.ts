@@ -65,9 +65,8 @@ export default class SendOtpToPhoneNumberInteractor
     const otp: Otp = this.otpUtil.generate(timeInterval, alg, digits);
     this.otpRepo.create(input.phoneNumber, otp);
     this.smsSender.sendOtpForVerification(otp.token, input.phoneNumber);
-    //emit event user has been created
     this.eventEmitter.emit(
-      "otp_been_sent_to_phone_number",
+      "otp_has_been_sent_to_phone_number",
       input.phoneNumber,
     );
     await this.outputPort.otpSent();

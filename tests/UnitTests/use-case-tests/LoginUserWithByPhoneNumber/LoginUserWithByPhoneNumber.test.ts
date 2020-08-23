@@ -54,4 +54,3 @@ Deno.test("Given Existed User When Login User With Correct Password", async () =
   assertEquals(presenter.userLoggedInCalled, true);
   assertEquals(presenter.unmatchedPasswordCalled, false);
 });
-
