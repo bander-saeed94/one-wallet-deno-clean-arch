@@ -28,9 +28,17 @@ import {
   LoginUserWithPhoneNumberInteractor,
   LoginUserWithPhoneNumberOutputPort,
 } from "../src/UseCases/LoginUserWithPhoneNumber/mod.ts";
+import {
+  ForgetPasswordInputPort,
+  ForgetPasswordInteractor,
+  ForgetPasswordOutputPort,
+} from "../src/UseCases/ForgetPassword/mod.ts";
+import InMemoryResetPasswordRepoFake from "../tests/UnitTests/gateways/repo/ResetPasswordRepoFake.ts";
+
 export default class UnitTestConfig {
   readonly userRepo = new InMemoryUserRepoFake();
   private readonly otpRepo = new InMemoryOtpRepoFake();
+  private readonly resetPasswordRepo = new InMemoryResetPasswordRepoFake();
 
   private readonly uuidGenerator = new UUIDGenerator();
   private readonly passwordHasherFake = new PassowrdHasherFake();
@@ -83,6 +91,18 @@ export default class UnitTestConfig {
       this.passwordHasherFake,
       this.userRepo,
       loginUserWithPhoneNumberOutputPort,
+    );
+  }
+
+  public forgetPasswordUseCase(
+    forgetPasswordOutputPort: ForgetPasswordOutputPort,
+  ): ForgetPasswordInputPort {
+    return new ForgetPasswordInteractor(
+      this.resetPasswordRepo,
+      this.userRepo,
+      this.uuidGenerator,
+      this.smsSenderImpl,
+      forgetPasswordOutputPort,
     );
   }
 }
