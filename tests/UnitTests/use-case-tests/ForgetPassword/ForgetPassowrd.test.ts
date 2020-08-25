@@ -17,7 +17,7 @@ Deno.test("Given Non Existed User When Forget Password", async () => {
   });
   assertEquals(presenter.invalidFields.length, 0);
   assertEquals(presenter.userIsNotRegisteredCalled, true);
-  assertEquals(presenter.esetPasswordLinkIsGeneratedCalled, false);
+  assertEquals(presenter.resetPasswordLinkIsGeneratedCalled, false);
 });
 
 Deno.test("Given Existed User When Forget Password", async () => {
@@ -30,5 +30,5 @@ Deno.test("Given Existed User When Forget Password", async () => {
   });
   assertEquals(presenter.invalidFields.length, 0);
   assertEquals(presenter.userIsNotRegisteredCalled, false);
-  assertEquals(presenter.esetPasswordLinkIsGeneratedCalled, true);
+  assertEquals(presenter.resetPasswordLinkIsGeneratedCalled, true);
 });

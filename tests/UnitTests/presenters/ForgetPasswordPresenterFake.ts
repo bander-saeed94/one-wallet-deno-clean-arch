@@ -5,7 +5,7 @@ export default class ForgetPassowrdPresenterFake
   implements ForgetPasswordOutputPort {
   public invalidFields: InvalidField[] = [];
   public userIsNotRegisteredCalled: boolean = false;
-  public esetPasswordLinkIsGeneratedCalled: boolean = false;
+  public resetPasswordLinkIsGeneratedCalled: boolean = false;
 
   async invalidInputs(fields: InvalidField[]): Promise<void> {
     this.invalidFields = fields;
@@ -16,6 +16,6 @@ export default class ForgetPassowrdPresenterFake
   }
 
   async resetPasswordLinkIsGenerated(): Promise<void> {
-    this.esetPasswordLinkIsGeneratedCalled = true;
+    this.resetPasswordLinkIsGeneratedCalled = true;
   }
 }

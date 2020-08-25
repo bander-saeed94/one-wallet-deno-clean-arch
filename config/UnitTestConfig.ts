@@ -7,6 +7,7 @@ import InMemoryUserRepoFake from "../tests/UnitTests/gateways/repo/UserRepoFake.
 import InMemoryOtpRepoFake from "../tests/UnitTests/gateways/repo/OtpRepoFake.ts";
 import OtpUtilFake from "../tests/UnitTests/lib/otp-util/OtpUtilFake.ts";
 import PassowrdHasherFake from "../tests/UnitTests/lib/otp-util/PasswordHasherFake.ts";
+import InMemoryResetPasswordRepoFake from "../tests/UnitTests/gateways/repo/ResetPasswordRepoFake.ts";
 
 import {
   RegisterUserByPhoneNumberInputPort,
@@ -33,7 +34,11 @@ import {
   ForgetPasswordInteractor,
   ForgetPasswordOutputPort,
 } from "../src/UseCases/ForgetPassword/mod.ts";
-import InMemoryResetPasswordRepoFake from "../tests/UnitTests/gateways/repo/ResetPasswordRepoFake.ts";
+import {
+  ResetPasswordInputPort,
+  ResetPasswordInteractor,
+  ResetPasswordOutputPort,
+} from "../src/UseCases/ResetPassword/mod.ts";
 
 export default class UnitTestConfig {
   readonly userRepo = new InMemoryUserRepoFake();
@@ -103,6 +108,14 @@ export default class UnitTestConfig {
       this.uuidGenerator,
       this.smsSenderImpl,
       forgetPasswordOutputPort,
+    );
+  }
+
+  public resetPasswordUseCase(
+    resetPasswordOutputPort: ResetPasswordOutputPort,
+  ): ResetPasswordInputPort {
+    return new ResetPasswordInteractor(
+      resetPasswordOutputPort,
     );
   }
 }
