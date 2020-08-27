@@ -4,6 +4,7 @@ import { ForgetPasswordOutputPort } from "../../../src/UseCases/ForgetPassword/m
 export default class ForgetPassowrdPresenterFake
   implements ForgetPasswordOutputPort {
   public invalidFields: InvalidField[] = [];
+  public expireIn: Date | undefined = undefined;
   public userIsNotRegisteredCalled: boolean = false;
   public resetPasswordLinkIsGeneratedCalled: boolean = false;
 
@@ -15,7 +16,8 @@ export default class ForgetPassowrdPresenterFake
     this.userIsNotRegisteredCalled = true;
   }
 
-  async resetPasswordLinkIsGenerated(): Promise<void> {
+  async resetPasswordLinkIsGenerated(expireIn: Date): Promise<void> {
+    this.expireIn = expireIn;
     this.resetPasswordLinkIsGeneratedCalled = true;
   }
 }

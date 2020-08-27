@@ -4,5 +4,5 @@ export default interface ForgetPasswordOutputPort {
 
   userIsNotRegistered(): Promise<void>;
 
-  resetPasswordLinkIsGenerated(): Promise<void>;
+  resetPasswordLinkIsGenerated(expireIn: Date): Promise<void>;
 }
