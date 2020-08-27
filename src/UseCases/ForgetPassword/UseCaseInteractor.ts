@@ -48,9 +48,8 @@ export default class ForgetPasswordInteractor
       await this.outputPort.userIsNotRegistered();
       return;
     }
-    let now = new Date();
-    let expireIn = new Date(now.getDate() + 1); //one day later
-
+    let expireIn = new Date();
+    expireIn.setDate(expireIn.getDate() + 1);
     let resetPassword = new ResetPassword(
       this.idGenerator.generate(),
       input.phoneNumber,

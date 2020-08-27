@@ -115,6 +115,9 @@ export default class UnitTestConfig {
     resetPasswordOutputPort: ResetPasswordOutputPort,
   ): ResetPasswordInputPort {
     return new ResetPasswordInteractor(
+      this.resetPasswordRepo,
+      this.userRepo,
+      this.passwordHasherFake,
       resetPasswordOutputPort,
     );
   }

@@ -7,4 +7,9 @@ export default interface UserRepo {
   verifyUserByPhoneNumber(phoneNumber: string): boolean;
 
   findByPhoneNumber(phoneNumber: string): User | undefined;
+
+  updatePasswordByPhoneNumber(
+    hashedPassword: string,
+    phoneNumber: string,
+  ): Promise<void>;
 }

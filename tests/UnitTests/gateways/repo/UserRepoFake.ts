@@ -39,4 +39,16 @@ export default class InMemoryUserRepoFake implements UserRepo {
   findByPhoneNumber(phoneNumber: string): User | undefined {
     return this.users.find((user) => user.phoneNumber === phoneNumber);
   }
+
+  async updatePasswordByPhoneNumber(
+    hashedPassword: string,
+    phoneNumber: string,
+  ): Promise<void> {
+    this.users.forEach((user) => {
+      if (user.phoneNumber === phoneNumber) {
+        user.hashedPassword = hashedPassword;
+        return;
+      }
+    });
+  }
 }
