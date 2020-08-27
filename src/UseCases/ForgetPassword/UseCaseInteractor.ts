@@ -49,7 +49,7 @@ export default class ForgetPasswordInteractor
       return;
     }
     let expireIn = new Date();
-    expireIn.setDate(expireIn.getDate() + 1);
+    expireIn.setDate(expireIn.getDate() + 1);//one day later
     let resetPassword = new ResetPassword(
       this.idGenerator.generate(),
       input.phoneNumber,
