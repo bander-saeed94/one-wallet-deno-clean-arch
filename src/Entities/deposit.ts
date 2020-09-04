@@ -1,4 +1,4 @@
-import Wallet from "./wallet.ts";
+import Wallet from "./Wallet.ts";
 
 export default abstract class Deposit {
   constructor(

@@ -39,11 +39,19 @@ import {
   ResetPasswordInteractor,
   ResetPasswordOutputPort,
 } from "../src/UseCases/ResetPassword/mod.ts";
+import {
+  CreateWalletInputPort,
+  CreateWalletInteractor,
+  CreateWalletOutputPort,
+} from "../src/UseCases/CreateWallet/mod.ts";
+import UserAuthintcationImplFake from "../tests/UnitTests/gateways/auth/UserAuthintcationImplFake.ts";
+import InMemoryWalletRepoFake from "../tests/UnitTests/gateways/repo/WalletRepoFake.ts";
 
 export default class UnitTestConfig {
   readonly userRepo = new InMemoryUserRepoFake();
   private readonly otpRepo = new InMemoryOtpRepoFake();
   private readonly resetPasswordRepo = new InMemoryResetPasswordRepoFake();
+  private readonly walletRepo = new InMemoryWalletRepoFake();
 
   private readonly uuidGenerator = new UUIDGenerator();
   private readonly passwordHasherFake = new PassowrdHasherFake();
@@ -53,6 +61,8 @@ export default class UnitTestConfig {
 
   private readonly smsSenderImpl = new SmsSenderImpl();
   private readonly otpConfig = new OtpConfigImpl(5, ShaAlg.sha1, 4);
+
+  public readonly userAuthintcationImplFake = new UserAuthintcationImplFake();
 
   public registerUserByPhoneNumberUseCase(
     registerByPhoneNumberPresenter: RegisterUserByPhoneNumberOutputPort,
@@ -119,6 +129,17 @@ export default class UnitTestConfig {
       this.userRepo,
       this.passwordHasherFake,
       resetPasswordOutputPort,
+    );
+  }
+
+  public createWalletUseCase(
+    createWalletOutputPort: CreateWalletOutputPort,
+  ): CreateWalletInputPort {
+    return new CreateWalletInteractor(
+      this.uuidGenerator,
+      this.walletRepo,
+      this.userAuthintcationImplFake,
+      createWalletOutputPort,
     );
   }
 }
