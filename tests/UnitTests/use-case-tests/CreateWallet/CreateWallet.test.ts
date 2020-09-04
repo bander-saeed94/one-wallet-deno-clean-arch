@@ -23,11 +23,10 @@ Deno.test("Create Wallet, No Logged In User", async () => {
   assertEquals(presenter.userNotVerifedByPhoneNumberCalled, false);
 });
 
-
-
 Deno.test("Create Wallet Given logged in user is not verified", async () => {
   let unitTestConfig = new UnitTestConfig();
-  unitTestConfig.userAuthintcationImplFake.setCurrentUserValueNonVerifedByPhoneNumber();
+  unitTestConfig.userAuthintcationImplFake
+    .setCurrentUserValueNonVerifedByPhoneNumber();
   let presenter = new CreateWalletPresenterFake();
   let createWalletUseCase = unitTestConfig
     .createWalletUseCase(presenter);
