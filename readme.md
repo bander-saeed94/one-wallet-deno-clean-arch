@@ -15,9 +15,9 @@ One Wallet. App to manage and track wallet where multiple persons are contributi
 - [x] Send Otp to User
 - [x] Verify User by Otp
 - [x] Login User
-- [ ] Forget Password
-- [ ] Reset Password
-- [ ] User create a wallet become admin.
+- [x] Forget Password
+- [x] Reset Password
+- [x] User create a wallet become admin.
 - [ ] Admin invite other users to be contributors.
 - [ ] User Accept invitation.
 - [ ] User Deposit to wallet.
