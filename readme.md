@@ -35,7 +35,7 @@ Install deno:
 [deno](https://deno.land/)
 
 Upgrade: 
-```deno upgrade --version 1.3.0```
+```deno upgrade --version 1.3.3```
 
 ## Testing
 
