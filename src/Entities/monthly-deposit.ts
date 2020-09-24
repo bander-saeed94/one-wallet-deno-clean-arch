@@ -5,9 +5,9 @@ export default class MonthlyDeposit extends Deposit {
   constructor(
     public readonly id: string,
     amount: number,
-    to: Wallet,
+    walletId: string,
     confirmed: boolean,
   ) {
-    super(amount, to, confirmed);
+    super(amount, walletId, confirmed);
   }
 }

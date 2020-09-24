@@ -1,15 +1,13 @@
-import Wallet from "./wallet.ts";
 import Deposit from "./deposit.ts";
-import Loan from "./loan.ts";
 
 export default class LoanDeposit extends Deposit {
   constructor(
     public readonly id: string,
     amount: number,
-    to: Wallet,
+    walletId: string,
     confirmed: boolean,
-    public readonly Loan: Loan,
+    public readonly loanId: string,
   ) {
-    super(amount, to, confirmed);
+    super(amount, walletId, confirmed);
   }
 }

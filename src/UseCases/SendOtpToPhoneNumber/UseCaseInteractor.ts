@@ -4,7 +4,7 @@ import {
   SendOtpToPhoneNumberOutputPort,
 } from "./mod.ts";
 
-import UserRepo from "../port/user-repo.ts";
+import UserRepo from "../port/UserRepo.ts";
 import EventEmitter from "../port/event-emitter.ts";
 import User from "../../Entities/user.ts";
 import OtpUtil from "../port/otp-util.ts";

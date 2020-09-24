@@ -1,5 +1,5 @@
 import User from "../../../../src/Entities/user.ts";
-import UserRepo from "../../../../src/UseCases/port/user-repo.ts";
+import UserRepo from "../../../../src/UseCases/port/UserRepo.ts";
 
 export default class InMemoryUserRepoFake implements UserRepo {
   private users: User[] = [
@@ -14,6 +14,22 @@ export default class InMemoryUserRepoFake implements UserRepo {
     new User(
       "8b19fbac-5e17-4cec-a8e4-d496908b85f8",
       "966501766628",
+      "Bander",
+      "Alshammari",
+      "hashedAa123456",
+      true,
+    ),
+    new User(
+      "0e808e03-0b5d-46ca-84e2-1f98d167479d",
+      "966501766629",
+      "Bander",
+      "Alshammari",
+      "hashedAa123456",
+      true,
+    ),
+    new User(
+      "1d5f8af9-747a-4766-9515-889cc715a200",
+      "966501766630",
       "Bander",
       "Alshammari",
       "hashedAa123456",

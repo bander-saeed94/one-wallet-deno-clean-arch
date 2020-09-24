@@ -3,7 +3,7 @@ import {
   ResetPasswordInputPort,
   ResetPasswordOutputPort,
 } from "./mod.ts";
-import UserRepo from "../port/user-repo.ts";
+import UserRepo from "../port/UserRepo.ts";
 import PasswordHasher from "../port/password-hasher.ts";
 
 import InvalidField from "../InvalidField.ts";

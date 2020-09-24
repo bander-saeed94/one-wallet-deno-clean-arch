@@ -13,4 +13,14 @@ export default class SmsSenderImpl implements SmsSender {
       `[sendResetPasswordLink] send: ${link} expire in: ${expireIn.toDateString()}, to: ${to}`,
     );
   }
+
+  async sendInvitationToBeWalletContributor(
+    invitedBy: string,
+    walletName: string,
+    to: string,
+  ): Promise<void> {
+    console.log(
+      `[sendInvitationToBeWalletContributor] send: you have been invited by ${invitedBy} to be contributor to ${walletName}, to: ${to}`,
+    );
+  }
 }

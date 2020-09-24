@@ -46,12 +46,21 @@ import {
 } from "../src/UseCases/CreateWallet/mod.ts";
 import UserAuthintcationImplFake from "../tests/UnitTests/gateways/auth/UserAuthintcationImplFake.ts";
 import InMemoryWalletRepoFake from "../tests/UnitTests/gateways/repo/WalletRepoFake.ts";
+import InMemoryWalletInvitationRepoFake from "../tests/UnitTests/gateways/repo/WalletInvitationRepoFake.ts";
+import {
+  InviteContributorInputPort,
+  InviteContributorInteractor,
+  InviteContributorOutputPort,
+} from "../src/UseCases/InviteContributor/mod.ts";
+import UserAuthintcation from "../src/UseCases/port/UserAuthintcation.ts";
 
 export default class UnitTestConfig {
   readonly userRepo = new InMemoryUserRepoFake();
   private readonly otpRepo = new InMemoryOtpRepoFake();
   private readonly resetPasswordRepo = new InMemoryResetPasswordRepoFake();
   private readonly walletRepo = new InMemoryWalletRepoFake();
+  private readonly walletInvitationRepo =
+    new InMemoryWalletInvitationRepoFake();
 
   private readonly uuidGenerator = new UUIDGenerator();
   private readonly passwordHasherFake = new PassowrdHasherFake();
@@ -61,8 +70,6 @@ export default class UnitTestConfig {
 
   private readonly smsSenderImpl = new SmsSenderImpl();
   private readonly otpConfig = new OtpConfigImpl(5, ShaAlg.sha1, 4);
-
-  public readonly userAuthintcationImplFake = new UserAuthintcationImplFake();
 
   public registerUserByPhoneNumberUseCase(
     registerByPhoneNumberPresenter: RegisterUserByPhoneNumberOutputPort,
@@ -134,12 +141,34 @@ export default class UnitTestConfig {
 
   public createWalletUseCase(
     createWalletOutputPort: CreateWalletOutputPort,
+    userAuthintcation: UserAuthintcation,
   ): CreateWalletInputPort {
     return new CreateWalletInteractor(
       this.uuidGenerator,
       this.walletRepo,
-      this.userAuthintcationImplFake,
+      userAuthintcation,
       createWalletOutputPort,
+    );
+  }
+
+  public inviteContributorUseCase(
+    inviteContributorOutputPort: InviteContributorOutputPort,
+    userAuthintcation: UserAuthintcation,
+  ): InviteContributorInputPort {
+    return new InviteContributorInteractor(
+      this.uuidGenerator,
+      this.walletInvitationRepo,
+      this.walletRepo,
+      this.userRepo,
+      userAuthintcation,
+      this.smsSenderImpl,
+      inviteContributorOutputPort,
+    );
+  }
+  public userAuthintcationImplFake(): UserAuthintcation {
+    return new UserAuthintcationImplFake(
+      this.userRepo,
+      this.passwordHasherFake,
     );
   }
 }
