@@ -4,7 +4,7 @@ import {
   VerifyUserByPhoneNumberOutputPort,
 } from "./mod.ts";
 
-import UserRepo from "../port/user-repo.ts";
+import UserRepo from "../port/UserRepo.ts";
 import OtpUtil from "../port/otp-util.ts";
 import OtpRepo from "../port/otp-repo.ts";
 

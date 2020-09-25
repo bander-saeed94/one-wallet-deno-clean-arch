@@ -8,10 +8,11 @@ import UnitTestConfig from "../../../../config/UnitTestConfig.ts";
 import CreateWalletPresenterFake from "../../presenters/CreateWalletPresenterFake.ts";
 
 Deno.test("Create Wallet, No Logged In User", async () => {
-  let unitTestConfig = new UnitTestConfig();
+  const unitTestConfig = new UnitTestConfig();
+  const userAuthintcationImpl = unitTestConfig.userAuthintcationImplFake();
   let presenter = new CreateWalletPresenterFake();
   let createWalletUseCase = unitTestConfig
-    .createWalletUseCase(presenter);
+    .createWalletUseCase(presenter, userAuthintcationImpl);
   await createWalletUseCase.execute({
     walletName: "family wallet",
     iban: "SA03 8000 0000 6080 1016 7519",
@@ -24,12 +25,12 @@ Deno.test("Create Wallet, No Logged In User", async () => {
 });
 
 Deno.test("Create Wallet Given logged in user is not verified", async () => {
-  let unitTestConfig = new UnitTestConfig();
-  unitTestConfig.userAuthintcationImplFake
-    .setCurrentUserValueNonVerifedByPhoneNumber();
+  const unitTestConfig = new UnitTestConfig();
+  const userAuthintcationImpl = unitTestConfig.userAuthintcationImplFake();
+  await userAuthintcationImpl.login("966501766627", "hashedAa123456"); //966501766627 non verified user, check userRepoFake
   let presenter = new CreateWalletPresenterFake();
   let createWalletUseCase = unitTestConfig
-    .createWalletUseCase(presenter);
+    .createWalletUseCase(presenter, userAuthintcationImpl);
   await createWalletUseCase.execute({
     walletName: "isterah wallet",
     iban: "SA03 8000 0000 6080 1016 751",
@@ -41,12 +42,14 @@ Deno.test("Create Wallet Given logged in user is not verified", async () => {
   assertEquals(presenter.userNotVerifedByPhoneNumberCalled, true);
 });
 
-Deno.test("Create Wallet", async () => {
-  let unitTestConfig = new UnitTestConfig();
-  unitTestConfig.userAuthintcationImplFake.setCurrentUserValue();
+Deno.test("Create Wallet, walletHasBeenCreatedCalled", async () => {
+  const unitTestConfig = new UnitTestConfig();
+  const userAuthintcationImpl = unitTestConfig.userAuthintcationImplFake();
+  await userAuthintcationImpl.login("966501766628", "hashedAa123456"); //966501766628 verified user, check userRepoFake
+
   let presenter = new CreateWalletPresenterFake();
   let createWalletUseCase = unitTestConfig
-    .createWalletUseCase(presenter);
+    .createWalletUseCase(presenter, userAuthintcationImpl);
   await createWalletUseCase.execute({
     walletName: "family wallet",
     iban: "SA03 8000 0000 6080 1016 7519",
@@ -59,11 +62,13 @@ Deno.test("Create Wallet", async () => {
 });
 
 Deno.test("Create Wallet Invalid fields", async () => {
-  let unitTestConfig = new UnitTestConfig();
-  unitTestConfig.userAuthintcationImplFake.setCurrentUserValue();
+  const unitTestConfig = new UnitTestConfig();
+  const userAuthintcationImpl = unitTestConfig.userAuthintcationImplFake();
+  await userAuthintcationImpl.login("966501766628", "hashedAa123456"); //966501766628 verified user, check userRepoFake
+
   let presenter = new CreateWalletPresenterFake();
   let createWalletUseCase = unitTestConfig
-    .createWalletUseCase(presenter);
+    .createWalletUseCase(presenter, userAuthintcationImpl);
   await createWalletUseCase.execute({
     walletName: "isterah wallet",
     iban: "SA03 8000 0000 6080 1016 751",

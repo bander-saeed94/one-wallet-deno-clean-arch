@@ -6,4 +6,10 @@ export default interface SmsSender {
     expireIn: Date,
     to: string,
   ): Promise<void>;
+
+  sendInvitationToBeWalletContributor(
+    invitedBy: string,
+    walletName: string,
+    to: string,
+  ): Promise<void>;
 }

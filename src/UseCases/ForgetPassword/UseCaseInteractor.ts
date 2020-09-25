@@ -4,7 +4,7 @@ import {
   ForgetPasswordOutputPort,
 } from "./mod.ts";
 
-import UserRepo from "../port/user-repo.ts";
+import UserRepo from "../port/UserRepo.ts";
 import User from "../../Entities/user.ts";
 import ResetPasswordRepo from "../port/gateways/Repo/ResetPasswordRepo.ts";
 import ResetPassword from "../../Entities/ResetPassword.ts";

@@ -4,7 +4,7 @@ import {
   RegisterUserByPhoneNumberOutputPort,
 } from "./mod.ts";
 
-import UserRepo from "../port/user-repo.ts";
+import UserRepo from "../port/UserRepo.ts";
 import IdGenerator from "../port/id-generator.ts";
 import PasswordHasher from "../port/password-hasher.ts";
 import EventEmitter from "../port/event-emitter.ts";

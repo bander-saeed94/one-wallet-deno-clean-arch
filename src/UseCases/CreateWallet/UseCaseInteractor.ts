@@ -56,8 +56,8 @@ export default class CreateWalletInteractor implements CreateWalletInputPort {
       this.idGenerator.generate(),
       input.walletName,
       input.iban,
-      loggedInUser!,
-      [loggedInUser!],
+      loggedInUser!.id,
+      [loggedInUser!.id],
       [],
       [],
     );

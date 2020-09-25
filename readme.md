@@ -18,7 +18,7 @@ One Wallet. App to manage and track wallet where multiple persons are contributi
 - [x] Forget Password
 - [x] Reset Password
 - [x] User create a wallet become admin.
-- [ ] Admin invite other users to be contributors.
+- [x] Admin invite other users to be contributors.
 - [ ] User Accept invitation.
 - [ ] User Deposit to wallet.
 - [ ] Admin Confirm a deposit.
@@ -35,7 +35,7 @@ Install deno:
 [deno](https://deno.land/)
 
 Upgrade: 
-```deno upgrade --version 1.3.0```
+```deno upgrade --version 1.4.1```
 
 ## Testing
 

@@ -1,4 +1,4 @@
-import UserRepo from "../../../../UseCases/port/user-repo.ts";
+import UserRepo from "../../../../UseCases/port/UserRepo.ts";
 import User from "../../../../Entities/user.ts";
 
 export default class InMemoryUserRepo implements UserRepo {
