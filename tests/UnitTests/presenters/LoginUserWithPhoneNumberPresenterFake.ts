@@ -1,6 +1,6 @@
 import InvalidField from "../../../src/UseCases/InvalidField.ts";
 import { LoginUserWithPhoneNumberOutputPort } from "../../../src/UseCases/LoginUserWithPhoneNumber/mod.ts";
-import User from "../../../src/Entities/user.ts";
+import User from "../../../src/Entities/User.ts";
 
 export default class LoginUserWithPhoneNumberPresenterFake
   implements LoginUserWithPhoneNumberOutputPort {

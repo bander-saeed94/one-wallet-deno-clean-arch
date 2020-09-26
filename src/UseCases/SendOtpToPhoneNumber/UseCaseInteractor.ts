@@ -6,12 +6,12 @@ import {
 
 import UserRepo from "../port/UserRepo.ts";
 import EventEmitter from "../port/event-emitter.ts";
-import User from "../../Entities/user.ts";
+import User from "../../Entities/User.ts";
 import OtpUtil from "../port/otp-util.ts";
 import SmsSender from "../port/SmsSender.ts";
 import OtpRepo from "../port/otp-repo.ts";
 import OtpConfig from "../port/otp-config.ts";
-import Otp from "../../Entities/otp.ts";
+import Otp from "../../Entities/Otp.ts";
 
 export default class SendOtpToPhoneNumberInteractor
   implements SendOtpToPhoneNumberInputPort {

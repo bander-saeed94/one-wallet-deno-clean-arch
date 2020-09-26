@@ -1,5 +1,5 @@
 import UserAuthintcation from "../../../../src/UseCases/port/UserAuthintcation.ts";
-import User from "../../../../src/Entities/user.ts";
+import User from "../../../../src/Entities/User.ts";
 import UserRepo from "../../../../src/UseCases/port/UserRepo.ts";
 import PasswordHasher from "../../../../src/UseCases/port/password-hasher.ts";
 

@@ -13,7 +13,7 @@ import UserRepo from "../port/UserRepo.ts";
 import WalletInvitation from "../../Entities/WalletInvitation.ts";
 import SmsSender from "../port/SmsSender.ts";
 import { InvitationStatus } from "../../Entities/InvitationStatus.ts";
-import User from "../../Entities/user.ts";
+import User from "../../Entities/User.ts";
 
 export default class InviteContributorInteractor
   implements InviteContributorInputPort {

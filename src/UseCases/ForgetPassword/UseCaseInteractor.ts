@@ -5,7 +5,7 @@ import {
 } from "./mod.ts";
 
 import UserRepo from "../port/UserRepo.ts";
-import User from "../../Entities/user.ts";
+import User from "../../Entities/User.ts";
 import ResetPasswordRepo from "../port/gateways/Repo/ResetPasswordRepo.ts";
 import ResetPassword from "../../Entities/ResetPassword.ts";
 import IdGenerator from "../port/id-generator.ts";

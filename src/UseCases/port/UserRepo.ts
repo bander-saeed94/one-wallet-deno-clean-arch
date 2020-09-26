@@ -1,4 +1,4 @@
-import User from "../../Entities/user.ts";
+import User from "../../Entities/User.ts";
 
 export default interface UserRepo {
   create(user: User): User;

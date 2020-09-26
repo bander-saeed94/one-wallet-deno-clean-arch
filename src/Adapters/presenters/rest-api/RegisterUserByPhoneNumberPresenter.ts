@@ -1,6 +1,6 @@
 import { RegisterUserByPhoneNumberOutputPort } from "../../../UseCases/RegisterUserByPhoneNumber/mod.ts";
 import InvalidField from "../../../UseCases/InvalidField.ts";
-import User from "../../../Entities/user.ts";
+import User from "../../../Entities/User.ts";
 import RestPresentation from "./RestPresentation.ts";
 import RegisterUserByPhoneNumberResponse from "./RegisterUserByPhoneNumberResponse.ts";
 export default class RegisterUserByPhoneNumberPresenter

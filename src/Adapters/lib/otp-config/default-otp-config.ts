@@ -1,5 +1,5 @@
 import OtpConfig from "../../../UseCases/port/otp-config.ts";
-import { ShaAlg } from "../../../Entities/sha-alg.ts";
+import { ShaAlg } from "../../../Entities/ShaAlg.ts";
 
 export default class OtpConfigImpl implements OtpConfig {
   constructor(

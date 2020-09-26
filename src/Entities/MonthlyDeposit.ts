@@ -1,5 +1,4 @@
-import Wallet from "./wallet.ts";
-import Deposit from "./deposit.ts";
+import Deposit from "./Deposit.ts";
 
 export default class MonthlyDeposit extends Deposit {
   constructor(

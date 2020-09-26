@@ -6,7 +6,7 @@ import {
 
 import UserRepo from "../port/UserRepo.ts";
 import PasswordHasher from "../port/password-hasher.ts";
-import User from "../../Entities/user.ts";
+import User from "../../Entities/User.ts";
 
 export default class LoginUserWithPhoneNumberInteractor
   implements LoginUserWithPhoneNumberInputPort {

@@ -1,4 +1,4 @@
-import { ShaAlg } from "./sha-alg.ts";
+import { ShaAlg } from "./ShaAlg.ts";
 
 /**
  * @param token - is the number to be shared with the user

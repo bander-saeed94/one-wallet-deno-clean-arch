@@ -2,7 +2,7 @@ import UUIDGenerator from "../src/Adapters/lib/id-generator/uuid-generator.ts";
 import EventEmitterImpl from "../src/Adapters/event-emitter/class-event-emitter.ts";
 import SmsSenderImpl from "../src/Adapters/gateways/sms-sender/SmsSenderImpl.ts";
 import OtpConfigImpl from "../src/Adapters/lib/otp-config/default-otp-config.ts";
-import { ShaAlg } from "../src/Entities/sha-alg.ts";
+import { ShaAlg } from "../src/Entities/ShaAlg.ts";
 import InMemoryUserRepoFake from "../tests/UnitTests/gateways/repo/UserRepoFake.ts";
 import InMemoryOtpRepoFake from "../tests/UnitTests/gateways/repo/OtpRepoFake.ts";
 import OtpUtilFake from "../tests/UnitTests/lib/otp-util/OtpUtilFake.ts";

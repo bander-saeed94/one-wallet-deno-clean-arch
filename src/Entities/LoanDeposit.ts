@@ -1,4 +1,4 @@
-import Deposit from "./deposit.ts";
+import Deposit from "./Deposit.ts";
 
 export default class LoanDeposit extends Deposit {
   constructor(

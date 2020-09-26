@@ -1,6 +1,6 @@
 import OtpRepo from "../../../../src/UseCases/port/otp-repo.ts";
-import Otp from "../../../../src/Entities/otp.ts";
-import { ShaAlg } from "../../../../src/Entities/sha-alg.ts";
+import Otp from "../../../../src/Entities/Otp.ts";
+import { ShaAlg } from "../../../../src/Entities/ShaAlg.ts";
 
 export default class InMemoryOtpRepoFake implements OtpRepo {
   private otps: { phoneNumber: String; otp: Otp }[] = [

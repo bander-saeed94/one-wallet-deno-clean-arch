@@ -1,5 +1,5 @@
 import OtpRepo from "../../../../UseCases/port/otp-repo.ts";
-import Otp from "../../../../Entities/otp.ts";
+import Otp from "../../../../Entities/Otp.ts";
 
 export default class InMemoryOtpRepo implements OtpRepo {
   private otps: { phoneNumber: String; otp: Otp }[] = [];
